@@ -1,0 +1,86 @@
+	<div class="header">
+   <a ><img src="img/logo.png" alt="Logo" /></a> 
+   <div class="styler">
+     <ul class="styler-show">
+       <li><div id="colorSelector-top-bar"></div></li>
+       <li><div id="colorSelector-box-head"></div></li>
+     </ul>
+   </div>
+  </div>
+
+  <div class="top-bar">
+      <ul id="nav">
+        <li id="user-panel">
+          <img src="../pics/favicon.ico" id="usr-avatar" alt="" />
+          <div id="usr-info">
+            <p id="usr-name">欢迎来到后台界面</p>
+            <p><a href="../shopHome_html.php">回到前台</a></p>
+          </div>
+        </li>
+        <li>
+            <ul >
+                <li class="nav-item">
+                    <a href="home.php"><img id="home_img" src="img/nav/dash.png" alt="" /><p>首页</p></a>
+                </li>
+            </ul>
+            <ul >
+                <li class="nav-item">
+                    <a href="user.php"><img id="user_img" src="img/nav/dash.png" alt="" /><p>用户管理</p></a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="adv.php"><img id="adv_img" src="img/nav/dash.png" alt="" /><p>广告管理</p></a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="kind.php"><img id="kind_img"  src="img/nav/dash.png" alt="" /><p>分类管理</p></a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="brand.php"><img id="brand_img" src="img/nav/dash.png" alt="" /><p>品牌管理</p></a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="goods.php"><img id="goods_img" src="img/nav/dash.png" alt="" /><p>商品管理</p></a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="indent.php"><img id="indent_img" src="img/nav/dash.png" alt="" /><p>订单管理</p></a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item">
+                    <a href="comment.php"><img id="comment_img" src="img/nav/dash.png" alt="" /><p>评论管理</p></a>
+                </li>
+            </ul>
+        </li>
+     </ul>
+  </div>
+<script>
+  $(function () {
+      var sin = [], cos = [];
+      for (var i = 0; i < 14; i += 0.5) {
+          sin.push([i, Math.sin(i)]);
+          cos.push([i, Math.cos(i)]);
+      }
+      $("#flot-demo").bind("plothover", function (event, pos, item) {
+          if ($("#enablePosition:checked").length > 0) {
+              var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+              $("#hoverdata").text(str);
+          }
+      });
+  });/* for the flot chart demo */
+    var img=document.getElementById(pageName()+"_img");
+    if(img!==null&&img!==undefined){
+        ind=img.src.lastIndexOf('/');
+        str1=img.src.slice(0,ind);
+        str2=img.src.slice(ind,img.src.length);
+        str2= str2.replace(".","-active"+".");
+        img.src=str1+str2;
+    }
+</script>

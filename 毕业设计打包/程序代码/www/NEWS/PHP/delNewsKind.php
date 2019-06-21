@@ -1,0 +1,1 @@
+<?php       include 'public.php';    $input = file_get_contents('php://input');    $arr = json_decode($input,true);      $cid=$arr['cid'];    $conn=consql();    if($conn){        $sql="DELETE FROM category  WHERE cid = $cid;";        mysqli_query($conn,$sql);            }?>

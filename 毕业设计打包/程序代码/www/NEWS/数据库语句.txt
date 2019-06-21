@@ -1,0 +1,26 @@
+use MYNEWS;
+create table user(
+uname CHAR(25) NOT NULL PRIMARY KEY, 
+upassword CHAR(25) NOT NULL,
+email CHAR(25) NOT NULL,
+jur int(5) NOT NULL
+);
+create table category(
+cid INT auto_increment PRIMARY KEY, 
+cname CHAR(25) NOT NULL
+)character set = utf8;
+
+create table press(
+pid INT auto_increment PRIMARY KEY, 
+ptitle CHAR(50) NOT NULL, 
+pcontent VARCHAR(50) NOT NULL,
+pdepartment  CHAR(50) NOT NULL,
+pdate  DateTime NOT NULL,
+ppicture CHAR(50)  NOT NULL,
+uname CHAR(25) NOT NULL,
+cid INT NOT NULL,
+clnum INT NOT NULL,
+review INT NOT NULL
+)character set = utf8;
+
+select *,category.cname from press,category  where category.cid=press.cid&&pid=2;

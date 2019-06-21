@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.com.lttc.loginui.controlActivity">
+    <LinearLayout
+        android:id="@+id/myLayout_id"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="280dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_cid"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="250dp"
+                android:layout_alignParentRight="true"
+                android:hint="输入硬件号"
+                android:textSize="@dimen/font_16" />
+
+            <Button
+                android:id="@+id/bt_shoot"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="50dp"
+                android:layout_alignParentRight="true"
+                android:text="开启视频" />
+
+            <Button
+                android:id="@+id/bt_drive"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="100dp"
+                android:layout_alignParentRight="true"
+                android:text="自动驾驶" />
+
+            <Button
+                android:id="@+id/bt_photo"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="150dp"
+                android:layout_alignParentRight="true"
+                android:text="拍照" />
+
+            <Button
+                android:id="@+id/bt_sensor"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="200dp"
+                android:layout_alignParentRight="true"
+                android:text="开启传感器" />
+
+            <cn.com.lttc.loginui.WheelView
+                android:id="@+id/ctrls"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:clickable="true" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

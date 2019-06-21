@@ -1,0 +1,121 @@
+
+#main_body{
+    width:60%;
+    margin: auto;
+}
+
+
+.blueline{
+    background-color:526abc;
+    height:5px;
+    width:100%;
+    margin:0 0 0 0;
+}
+
+
+#middle{
+    background-color:eeeeee;
+    width:100%;
+    height:100px;
+    margin:0 0 0 0;
+    text-align:center;
+    line-height: 100px;
+}
+#middle input{
+    width:200px;
+    height: 30px;
+}
+#middle button{
+    color:white;
+    font-size:15px;
+    background-color: red;
+    width:60px;
+    height: 30px;
+}
+/*
+结果
+*/
+.kindList{
+    margin-top: 10px;
+    background-color: eeeeee;
+    width:100%;
+    height: 200px;
+}
+.kindTop{
+    font-size:15px;
+    color:white;
+    background-color: 444444;
+    width:100%;
+    height: 30px;
+    line-height: 30px;
+}
+.more{
+    float:right;
+}
+.more a{
+    font-size:15px;
+    color:white;
+    text-decoration:none;
+}
+.more a:hover{
+    color:526abc;
+}
+
+.goodsLink{
+    float:left;
+    margin-top: 10px;
+    margin-left: 40px;
+    background-color: white;
+    width:17%;
+    height: 70%;
+    line-height: 30px;
+}
+.goodsLink{
+        border:2px solid #decede;
+  -moz-border-bottom-colors:#300 #600 #700 #800 #900 #A00;
+  -moz-border-top-colors:#300 #600 #700 #800 #900 #A00;
+  -moz-border-left-colors:#300 #600 #700 #800 #900 #A00;
+  -moz-border-right-colors:#300 #600 #700 #800 #900 #A00;
+  padding: 2px 2px;
+}
+.goodsLink img{
+    height: 80%;
+    width: 100%;
+}
+.goodsBottom{
+    font-size:15px;
+    color:purple;
+     background-color: eeeeee;
+     height: 20%;
+     width: 100%;
+}
+
+
+
+/*
+bottom
+*/
+.bottom{
+    width:100%;
+    height: 80px;
+}
+
+/*
+广告
+*/
+
+.myadv{
+    width:200px;
+    position:absolute;
+    z-index:2;
+    opacity:0.6;
+    border:2px;
+}
+#myadv1{
+    top:100px;
+    left:0;
+}
+#myadv2{
+    top:100px;
+    right:0;
+}

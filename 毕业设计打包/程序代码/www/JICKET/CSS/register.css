@@ -1,0 +1,19 @@
+#myul{
+    display:inline-block;  
+    list-style-type:none;
+}
+#myul label{
+    width:80px;
+    display:inline-block;
+}
+#myul input{
+    width:300px;
+   
+}
+#myul a{
+    color:red;
+}
+#sub{
+    margin-left:100px;
+    width: 120px;
+}

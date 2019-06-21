@@ -1,0 +1,1 @@
+<?php    include '../../PHP/public.php';    $input = file_get_contents('php://input');    $arr = json_decode($input,true);      $id=$arr['id'];    $conn=consql();    if($conn){        $sql="DELETE FROM kind  WHERE id = $id;";        mysqli_query($conn,$sql);    }?>

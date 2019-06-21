@@ -1,0 +1,37 @@
+#repertoire{
+    width:100%;
+    float:left;
+}
+#mytop{
+    background-color:eaf1fa;
+    height:30px;
+}
+.mytop_a{
+    color:black;
+    margin-right:7px;
+    margin-left:7px;
+    float:right;
+}
+.text_div{
+   text-align: center;
+}
+.text_p{
+   text-align: center;
+}
+
+#rid p{
+    font-size:10px;
+}
+#jmmc p{
+    font-size:30px;
+}
+
+/*
+购买
+*/
+#buyOption{
+    float:left;
+}
+#buyOption a{
+    font-size:50px;
+}

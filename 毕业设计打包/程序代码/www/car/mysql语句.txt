@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS `user` (
+  `name` varchar(40) NOT NULL,
+  `tel` varchar(40) NOT NULL,
+  `pwd` varchar(40) NOT NULL,
+  `jur`  int NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `mydata` (
+    id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    car_id int(10) NOT NULL,
+    car_time date NOT NULL,
+    `latitude` float NOT NULL,
+    `longitude` float NOT NULL,
+    `temperature` float NOT NULL,
+    `humidity` float NOT NULL,
+    `energy` int NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `remember` (
+    id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    op_time datetime NOT NULL,
+    car_id int NOT NULL,
+    user_name varchar(40) NOT NULL,
+    operate_name varchar(40) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;

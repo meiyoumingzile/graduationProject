@@ -1,0 +1,1 @@
+<?php       include '../../PHP/public.php';    $input = file_get_contents('php://input');    $arr = json_decode($input,true);      $id=$arr['id'];    $name=$arr['name'];    $conn=consql();    if($conn){        $sql="update  status set name=\"$name\" WHERE id = $id;";        mysqli_query($conn,$sql);    }?>

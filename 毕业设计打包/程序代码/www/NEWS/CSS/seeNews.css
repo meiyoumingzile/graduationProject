@@ -1,0 +1,22 @@
+body{
+    width:100%
+}
+.text_div{
+   text-align: center;
+}
+.text_p{
+   text-align: center;
+}
+
+#ptitle p{
+    color:black;
+    font-size:64px;
+}
+#pcontent p{
+    font-family: "宋体";
+    font-size:30px;
+}
+#info p{
+   
+    font-size:10px;
+}

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+    android:layout_marginTop="5dip"
+  android:layout_height="wrap_content" >
+
+  <TextView
+    android:id="@+id/tx_id"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:paddingBottom="10dip"
+    android:paddingTop="10dip"
+    android:textColor="#000000"
+    android:textSize="10sp"
+    android:singleLine="true"
+    android:text="id" />
+    
+  <View 
+    android:layout_width="1.5dip"
+    android:layout_height="fill_parent"
+    android:background="#B4B3B3"/>
+
+    <TextView
+        android:id="@+id/tx_cid"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingBottom="10dip"
+        android:textColor="#000000"
+        android:paddingTop="10dip"
+        android:singleLine="true"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:text="硬件号" />
+    <View
+        android:layout_width="1.5dip"
+        android:layout_height="fill_parent"
+        android:background="#B4B3B3"/>
+
+    <TextView
+        android:id="@+id/tx_time"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:singleLine="true"
+        android:gravity="center"
+        android:text="时间"/>
+    <View
+        android:layout_width="1.5dip"
+        android:layout_height="fill_parent"
+        android:background="#B4B3B3"/>
+
+    <TextView
+        android:id="@+id/tx_lo"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingBottom="10dip"
+        android:textColor="#000000"
+        android:paddingTop="10dip"
+        android:singleLine="true"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:text="经度" />
+    <View
+    android:layout_width="1.5dip"
+    android:layout_height="fill_parent"
+    android:background="#B4B3B3"/> 
+  
+   <TextView
+    android:id="@+id/tx_la"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_weight="2"
+    android:paddingBottom="10dip"
+    android:textColor="#000000"
+    android:paddingTop="10dip"
+    android:singleLine="true"
+    android:textSize="10sp"
+    android:gravity="center"
+    android:text="纬度" />
+     
+   <View 
+    android:layout_width="1.5dip"
+    android:layout_height="fill_parent"
+    android:background="#B4B3B3"/> 
+  
+   <TextView
+    android:id="@+id/tx_tem"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:paddingBottom="10dip"
+    android:paddingTop="10dip"
+    android:textColor="#000000"
+    android:singleLine="true"
+    android:textSize="10sp"
+    android:gravity="center"
+    android:text="温度" />
+
+    <View
+    android:layout_width="1.5dip"
+    android:layout_height="fill_parent"
+    android:background="#B4B3B3"/>
+
+    <TextView
+        android:id="@+id/tx_hum"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:text="湿度" />
+    <View
+        android:layout_width="1.5dip"
+        android:layout_height="fill_parent"
+        android:background="#B4B3B3"/>
+
+    <TextView
+        android:id="@+id/tx_en"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:text="电量" />
+</LinearLayout>

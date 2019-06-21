@@ -1,0 +1,1 @@
+update  category  set cname="政治" WHERE cid = 6;

@@ -1,0 +1,63 @@
+use MYTICKET;
+/*
+演出剧目:剧目rid，剧目名称jmmc，上架时间rtime，剧目介绍jmjs，主要演员zyyy，剧目时长jmsc，剧照jz
+*/
+create table repertoire(
+    rid int auto_increment PRIMARY KEY, 
+    jmmc CHAR(50) NOT NULL, 
+    rtime DateTime NOT NULL,
+    jmjs CHAR(200) NOT NULL, 
+    zyyy CHAR(50) NOT NULL, 
+    jmsc INT NOT NULL,
+    jz CHAR(50) NOT NULL
+)character set = utf8;
+
+/*
+剧场：剧场thid，剧场名称jcmc，座位数量zwsl
+*/
+create table theatre(
+    thid int auto_increment PRIMARY KEY, 
+    jcmc CHAR(50) NOT NULL, 
+    zwsl int NOT NULL
+)character set = utf8;
+
+/*
+演出场次：场次fid，剧目rid，剧场thid，开演时间，剩余票数，票价，发售状态
+*/
+create table field(
+    fid int auto_increment PRIMARY KEY, 
+    rid int NOT NULL, 
+    thid int NOT NULL, 
+    begintime DateTime NOT NULL,
+    surtiCnt int NOT NULL, 
+    price int NOT NULL, 
+    Selling int NOT NULL
+)character set = utf8;
+
+/*
+用户：电话，账号，密码，邮箱，权限
+*/
+create table user(
+    tel CHAR(25) NOT NULL PRIMARY KEY, 
+    uname CHAR(25) NOT NULL, 
+    upassword CHAR(25) NOT NULL,
+    email CHAR(25) NOT NULL,
+    jur int(5) NOT NULL
+)character set = utf8;
+
+/*
+票：订单tid，用户tel， rid ,thid,开演时间，票价，数量，总价
+*/
+create table ticket(
+    tid int auto_increment PRIMARY KEY, 
+    tel CHAR(50) NOT NULL, 
+    fid int NOT NULL, 
+    price int NOT NULL, 
+    cnt int NOT NULL, 
+    sumprice int NOT NULL
+)character set = utf8;
+
+/*
+插入管理员
+*/
+INSERT INTO `user` (`tel`, `uname`, `upassword`, `email`, `jur`) VALUES ('Aa123', 'Aa123', 'Aa123', 'Aa123', '2');

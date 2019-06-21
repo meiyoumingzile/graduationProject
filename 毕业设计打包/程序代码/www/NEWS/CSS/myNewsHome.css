@@ -1,0 +1,63 @@
+#mytop{
+    background-color:eaf1fa;
+    height:30px;
+}
+.mytop_a{
+    color:black;
+    margin-right:7px;
+    margin-left:7px;
+    float:right;
+}
+
+#crevice{
+    
+    height:100px;
+}
+
+#main_line1,#main_line2{
+    height:5px;
+}
+#main_opbox{
+    background-color:6c99bb;
+    height:50px;
+}
+.main_opbox_a {
+    color:black;
+    font-size:30px;
+     text-decoration: none;
+}
+
+#main_con{
+    background-color:c2cdfb;
+    border-radius:5px;
+    margin-top:10px;
+    margin-left:8%;
+    margin-right:5%;
+    width:50%;
+    height:1000px; 
+    float: left;
+}
+#main_adv{
+    background-color:c2cdfb;
+    border-radius:5px;
+    margin-top:10px;
+    margin-right:5%;
+    width:30%;
+    height:1000px;
+    float: left;
+}
+
+#main_con_button{
+    height:60px;
+}
+#bt_first,#bt_previous,#bt_next,#bt_last{
+    height:40px;
+    margin-right:5%;
+    margin-left:5%;
+    float:left;
+}
+.main_con_text_a {
+    color:black;
+    font-size:30px;
+    text-decoration: none;
+}

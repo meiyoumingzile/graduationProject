@@ -1,0 +1,1 @@
+<?php       include 'public.php';    $input = file_get_contents('php://input');    $arr = json_decode($input,true);      $pid=$arr['pid'];    $conn=consql();    if($conn){        $sql="update press set review=1 WHERE pid = $pid;";        if(mysqli_query($conn,$sql)==true){            echo 1;        }else{            echo 0;        }    }?>

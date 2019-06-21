@@ -1,0 +1,55 @@
+#main{
+  margin:0 auto;
+  background-color:white;
+  width:70%;
+  height:70%;
+  padding-left :30px;
+  padding-right :30px;
+}
+#tittext{
+    font-size:30px;
+}
+#myul{width:100%;
+    display:inline-block;  
+    list-style-type:none;
+}
+#myul li{
+    
+    width:100%;
+    margin-top:10px;
+}
+#myul label{
+    width:80px;
+    display:inline-block;
+}
+#myul input{
+    width:400px;
+    height: 30px;
+    padding-left :70px;
+}
+#myul a{
+    color:red;
+}
+#sub{
+    width:400px;
+    text-align:center; 
+}
+#sub button{
+    font-size:24px;
+    color:white;
+    background-color:526abc;
+    display:inline-block;
+    width:400px;
+    height: 50px;
+}
+
+.box{
+    position: relative;
+}
+.box label{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    border:0;
+}

@@ -1,0 +1,20 @@
+<div id="top">
+    <script>
+        $('#top')[0].innerHTML="<a href='shopHome_html.php'><img src='pics/tit.png' height='50' width='120'></a>";
+        if(isset($.cookie('loginState'))){
+            $('#top')[0].innerHTML+="<div class='top_op'><img id='headIco' src='pics/headpic.jpg'><a href='personal.php'>"+$.cookie('loginState')+"</a></div><div class='top_op' id='rejump'><a>登出</a></div><div class='top_op'><a href='personal.php?type=3'>购物车</a></div>";
+        }else{
+            $('#top')[0].innerHTML+="<div class='top_op'><a href='login.php'>登录</a></div><div class='top_op'><a href='register.php'>注册</a></div>";
+        }
+        if(isset($.cookie('jur'))&&parseInt($.cookie('jur'))>1){
+            $('#top')[0].innerHTML+="<div class='top_op'><a href='admin/home.php'>去管理员界面</a></div>";
+        }
+         arr=$('#rejump');
+            arr[0].onclick=function(){
+                $.cookie('loginState', '', { expires: -1 }); 
+                $.cookie('jur', '', { expires: -1 }); 
+                $.cookie('user_id', '', { expires: -1 }); 
+                window.location.href='login.php';
+            };
+    </script>  
+</div>

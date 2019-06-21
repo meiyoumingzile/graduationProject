@@ -1,0 +1,26 @@
+主页shopHome_html.php
+结算页面settlement.php
+注册register.php
+个人中心personal.php
+登录界面login.php
+header.html前台公用的类库，负责绘制顶部导航栏
+商品详情界面goodsDetailed.php
+admin 储存有台页面php css js的文件夹
+advPics 储存广告图片
+CSS 前台css
+Flat-UI-master 网上下的css美化类库，
+JS 前台js
+PHP 前台数据库查询的小规模php文件
+pics 前台的部分图片，还有一部分放在了admin下
+uploadPics 上传的商品图片
+
+后台：
+adminHeader.html后台公用的类库，负责绘制顶部导航栏
+adv.php广告管理
+brand.php品牌管理
+comment.php评论管理
+goods.php 商品管理
+home.php 管理员首页
+indent.php 订单管理
+kind.php 商品类别管理
+user.php 用户账号管理
