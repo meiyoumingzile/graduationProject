@@ -1,0 +1,40 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Lead_walk_left",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.68,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "71aacb9e-3390-4335-9745-0865d28bb9d5"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "b4c81913-e104-4e08-a885-f161f6aa9828"
+            }
+          },
+          {
+            "frame": 0.6666666666666666
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "71aacb9e-3390-4335-9745-0865d28bb9d5"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

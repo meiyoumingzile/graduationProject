@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "22d1be26-36e5-49de-8565-6cef36e206a9",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Enemy_snail5_left2": {
+      "ver": "1.0.3",
+      "uuid": "382decf3-2614-4846-bdf4-a37b0a20d654",
+      "rawTextureUuid": "22d1be26-36e5-49de-8565-6cef36e206a9",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 90,
+      "height": 60,
+      "rawWidth": 90,
+      "rawHeight": 60,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

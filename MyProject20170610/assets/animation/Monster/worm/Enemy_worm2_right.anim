@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Enemy_worm2_right",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.35,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "7ac4f1ca-41be-4573-b716-71fd0042e06c"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "b78e7837-b5b4-4973-a0a5-bbb428f9dcdc"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "7ac4f1ca-41be-4573-b716-71fd0042e06c"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "130d4a66-4bb9-4bb5-9ecd-3629a20cab49"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "7ac4f1ca-41be-4573-b716-71fd0042e06c"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

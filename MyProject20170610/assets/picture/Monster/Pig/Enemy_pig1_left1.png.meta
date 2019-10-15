@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "190bf5aa-ea98-434c-ae4b-0d39e396c6da",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Enemy_pig1_left1": {
+      "ver": "1.0.3",
+      "uuid": "9c50437d-2882-480f-be82-da45f07c55a1",
+      "rawTextureUuid": "190bf5aa-ea98-434c-ae4b-0d39e396c6da",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 80,
+      "height": 90,
+      "rawWidth": 80,
+      "rawHeight": 90,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

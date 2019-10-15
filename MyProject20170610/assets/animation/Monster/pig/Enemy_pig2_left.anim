@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Enemy_pig2_left",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.0166666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "9c50437d-2882-480f-be82-da45f07c55a1"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "c8ea4037-133a-4cbe-83f7-17ea8421c49f"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "a3fbae04-a583-4b20-a079-6d8bfc76ead4"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "9c50437d-2882-480f-be82-da45f07c55a1"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

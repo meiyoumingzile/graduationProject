@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "c6fb8729-883e-4568-8940-2e1a612d7ac6",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "键盘设置": {
+      "ver": "1.0.3",
+      "uuid": "58191796-7105-486c-beb1-f169f8e37928",
+      "rawTextureUuid": "c6fb8729-883e-4568-8940-2e1a612d7ac6",
+      "trimType": "custom",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 150,
+      "height": 70,
+      "rawWidth": 150,
+      "rawHeight": 70,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
