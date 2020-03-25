@@ -1,0 +1,47 @@
+class FriendItemRender extends eui.ItemRenderer implements eui.UIComponent {
+	public constructor() {
+		super();
+	}
+
+
+	private static cur_friendRander:FriendItemRender = null;
+	
+	protected partAdded(partName:string,instance:any):void
+	{
+		super.partAdded(partName,instance);
+	}
+
+
+	protected childrenCreated():void
+	{
+		super.childrenCreated();
+
+		this.addEventListener(egret.TouchEvent.TOUCH_TAP,async()=>{
+			// app.ui.busy();
+			// let bo = await platform.createCtx(this.data.id);
+			// app.ui.rmBusy();
+			// if(bo){
+			// 	app.model.player.incrPlayWithFriendCount();
+			// 	app.notify(Constant.Notify.start_game);
+			// 	app.ui.toast(app.lang.getString("lab_playWith","Playing with {name}",{name:this.data.name}));
+			// }
+			// platform.log(Constant.LogEvent.create,{type:"home_friend",result:bo?1:0})
+		},this);
+	}
+
+	img_func:eui.Image;
+	txt_name:eui.Label;
+	node_head:eui.Image;
+	btn_play:eui.Button;
+
+
+
+
+	protected dataChanged(){
+		if(!this.data) return;
+
+		let data = this.data
+		this.txt_name.text = data.name;
+		this.node_head.source = data.photo
+	}
+}

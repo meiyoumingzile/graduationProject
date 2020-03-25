@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="GameViewSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="169048781c9" ></w:Config>
+	<e:Label id="txt_ranking" text="" y="70" size="43" horizontalCenter="0" visible="false"/>
+	<e:Group id="group_progressbar" y="128" horizontalCenter="0" width="441" height="23" visible="false">
+		<e:Image source="game-flag.png" right="3" y="-34"/>
+		<e:Image id="img_progressbar_black" source="game-progressbar-black.png"/>
+		<e:Image id="img_progressbar_yellow" source="game-progressbar-yellow.png"/>
+		<e:Image id="img_wheel" source="game-wheel.png" anchorOffsetX="13" anchorOffsetY="12.5" x="0" y="2.5"/>
+	</e:Group>
+	<e:Group id="group_swipe" y="940" horizontalCenter="0">
+		<e:Image source="game-swipe-bar.png"/>
+		<e:Image id="img_finger" y="0" source="game-finger.png"/>
+	</e:Group>
+	<e:Group id="gp_dev_tools" y="522" left="0" visible="false">
+		<e:Button id="btn_gameover" label="Gameover" width="150" height="50" left="0">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="home-star-bg.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Group y="120">
+		<e:Image width="100%" height="50" source="home-star-bg.png" scale9Grid="38,0,85,50"/>
+		<e:Label id="txt_current_level" text="CurrentLevel:11" left="0" verticalCenter="0"/>
+		</e:Group>
+		<e:layout>
+		<e:VerticalLayout/>
+		</e:layout>
+	</e:Group>
+	<e:Label id="label_distance" text="0" y="127" horizontalCenter="0" size="40" fontFamily="Arial"/>
+	<e:Button id="dieRot" label="dieRot" x="284" y="584" visible="false"/>
+	<e:Image id="img_notice" width="100%" height="264" x="0" y="600" source="game_notice.png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Group width="150" height="150" x="433" y="54">
+		<e:Image width="100%" height="100%" x="0" y="0" source="game_headbg.png"/>
+		<e:Image width="20" height="20" x="89" y="68"/>
+	</e:Group>
+	<!--<e:Group id="gp_recommend" y="270" horizontalCenter="0">
+		<e:Image x="0" y="0" source="game-bg-recommend.png"/>
+		<e:Image id="img_recommend_ball" y="60" horizontalCenter="0" scaleX="1.6" scaleY="1.6" source=""/>
+		<e:Button id="btn_try" label="" y="258" horizontalCenter="0">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="game-icon-try.png" source.down="game-icon-try-down.png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btn_close" label="" top="-31.5" right="-27">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="game-icon-close.png" source.down="game-icon-close-down.png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>-->
+</e:Skin>

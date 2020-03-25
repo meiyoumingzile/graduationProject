@@ -1,0 +1,119 @@
+class RankView extends BasePopup {
+	public constructor() {
+		super();
+	}
+	btn_home: eui.Button;
+	img_portrait_champion_mask: eui.Image;
+	img_portrait_champion: eui.Image;
+	txt_champion: eui.Label;
+
+	_current_tab = "world";
+	img_tab_world: eui.Image;
+	img_tab_friend: eui.Image;
+	btn_world: eui.Group;
+	btn_friend: eui.Group;
+	view_stack: eui.ViewStack;
+	list_world: eui.List;
+	list_friend: eui.List;
+	rect_white_bar: eui.Rect;
+	btn_share: eui.Button;
+
+	worldRankEntries: RankPlayerVO[] = [];
+	friendRankEntries: RankPlayerVO[] = [];
+	myFriendEntry: RankPlayerVO;
+	myWorldEntry: RankPlayerVO;
+	node_world: WorldRankItemRender;
+	node_friend: FriendRankItemRender;
+
+	protected async childrenCreated() {
+		super.childrenCreated();
+
+		this.rect_white_bar.width *= Constant.FullWidthScale;
+		this.img_portrait_champion.mask = this.img_portrait_champion_mask;
+
+		this.btn_home.addEventListener("touchTap", this.onTapHome, this);
+		this.btn_world.addEventListener("touchTap", this.onTapWorld, this);
+		this.btn_friend.addEventListener("touchTap", this.onTapFriend, this);
+		this.btn_share.addEventListener("touchTap", this.onTapShare, this);
+
+		this.addEventListener('PlayWithFriend', function () {
+			this.close();
+			app.ui.addPopup(new GameView);
+			Game.inst.start();
+		}, this);
+
+		let worldRankList: FBInstant.LeaderboardEntry[] = app.status.worldRankList || await app.platform.getWorldRankList();
+		let friendRankList: FBInstant.LeaderboardEntry[] = app.status.friendRankList || await app.platform.getFriendRankList();
+
+		worldRankList.map((value) => {
+			this.worldRankEntries.push(RankPlayerVO.createFromLeaderBoardEntry(value));
+		})
+		friendRankList.map((value) => {
+			this.friendRankEntries.push(RankPlayerVO.createFromLeaderBoardEntry(value));
+		})
+		egret.log("worldRankEntries", this.worldRankEntries);
+		egret.log("friendRankEntries", this.friendRankEntries);
+
+		this.myWorldEntry = app.platform.getWorldSelfEntry();
+		this.myFriendEntry = this.friendRankEntries.find(value => value.id === app.platform.id());
+
+		egret.log("this.myWorldEntry", this.myWorldEntry);
+		let rankPlayerVO = new RankPlayerVO();
+		Object.assign(rankPlayerVO, this.myWorldEntry);
+		rankPlayerVO["bg"] = "rank-bar-personal.png";
+		rankPlayerVO["name_color"] = 0xffffff;
+		this.node_world.data = rankPlayerVO;
+
+		rankPlayerVO = new RankPlayerVO();
+		Object.assign(rankPlayerVO, this.myFriendEntry);
+		rankPlayerVO["bg"] = "rank-bar-personal.png";
+		rankPlayerVO["name_color"] = 0xffffff;
+		this.node_friend.data = rankPlayerVO;
+
+		this.list_world.dataProvider = new eui.ArrayCollection(this.worldRankEntries);
+		this.list_friend.dataProvider = new eui.ArrayCollection(this.friendRankEntries);
+
+		this.img_portrait_champion.source = this.worldRankEntries[0] && this.worldRankEntries[0].photo;
+		this.txt_champion.text = this.worldRankEntries[0] && this.worldRankEntries[0].name;
+	}
+
+	onTapHome() {
+		this.close();
+		app.ui.addPopup(new HomeView);
+	}
+
+	onTapWorld() {
+		if (this._current_tab === "world") {
+			//do nothing
+		} else {
+			AudioPlayer.playSound("click.mp3");
+			this._current_tab = "world";
+			this.img_portrait_champion.source = this.worldRankEntries[0] && this.worldRankEntries[0].photo;
+			this.txt_champion.text = this.worldRankEntries[0] && this.worldRankEntries[0].name;
+			this.img_tab_friend.visible = false;
+			this.img_tab_world.visible = true;
+
+			this.view_stack.selectedIndex = 0;
+		}
+	}
+
+	onTapFriend() {
+		if (this._current_tab === "world") {
+			AudioPlayer.playSound("click.mp3");
+			this._current_tab = "friend";
+			this.img_portrait_champion.source = this.friendRankEntries[0] && this.friendRankEntries[0].photo;
+			this.txt_champion.text = this.friendRankEntries[0] && this.friendRankEntries[0].name;
+			this.img_tab_world.visible = false;
+			this.img_tab_friend.visible = true;
+
+			this.view_stack.selectedIndex = 1;
+		} else {
+			//do nothing
+		}
+	}
+	async onTapShare() {
+		await ShareHelper.sendGenericUpdate(true);
+		app.platform.logEvent(Log.EventType.RankClick, { type: app.status.playerType, source: "btnInvite" });
+	}
+
+}

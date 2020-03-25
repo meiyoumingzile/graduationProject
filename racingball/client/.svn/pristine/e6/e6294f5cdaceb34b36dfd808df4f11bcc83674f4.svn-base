@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="WorldRankItemRenderSkin" states="up,down,disabled" minHeight="50" minWidth="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="img_bar" source="rank-bar-unnamed.png" scale9Grid="72,0,302,74"/>
+	<e:Group anchorOffsetY="0" height="69" width="100%">
+		<e:Group x="8" verticalCenter="0">
+		<e:Group id="gp_portrait">
+			<e:Image id="img_portrait_bg" source="rank-portrait-rankn.png"/>
+			<e:Image id="img_portrait_mask" source="rank-mask-portrait.png" horizontalCenter="0" verticalCenter="0"/>
+			<e:Image id="img_portrait" horizontalCenter="0" verticalCenter="0" width="64" height="63" source="default_portrait.png"/>
+		</e:Group>
+		<e:Group bottom="0" left="54">
+			<e:Image id="img_rank_bg" width="100%" scale9Grid="7,7,15,15" source="rank-rankn.png"/>
+			<e:Group horizontalCenter="0" verticalCenter="0">
+			<e:Label id="txt_rank" text="1" size="20" y="0" x="0"/>
+			<e:layout>
+				<e:HorizontalLayout gap="0" paddingRight="6" paddingLeft="6"/>
+			</e:layout>
+			</e:Group>
+		</e:Group>
+		</e:Group>
+		<e:Label id="txt_name" text="" textColor="0x797981" size="27" verticalCenter="2" height="27" left="105" width="150"/>
+		<e:Group id="gp_skin" verticalCenter="0" right="169">
+		<e:Image id="img_skin" x="0" verticalCenter="0" source="default_ball.png" width="46" height="46"/>
+		</e:Group>
+		<e:Label id="txt_score" text="0" size="27" height="27" width="80" textAlign="center" textColor="0xffffff" stroke="2" strokeColor="0x1b48c7" verticalCenter="2" right="10"/>
+	</e:Group>
+
+	<w:Config id="1690a33053f" ></w:Config>
+</e:Skin>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SkinViewSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="1690f66bd6f"></w:Config>
+	<e:Image width="100%" height="100%" x="0" y="6" anchorOffsetX="0" anchorOffsetY="0" source="skin_example.jpg" visible="false"/>
+	
+	
+	<e:Button id="btn_home" label="" x="0" y="0" enabled="true">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="return_main.png" source.down="return_main_down.png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+
+	<e:Label text="S K I N S" y="74" size="56"  horizontalCenter="0" visible="false"/>
+	<e:Group id="gp_tab_bar" y="150" horizontalCenter="0" visible="false">
+		<e:Image id="img_tab_video" source="skin-tab-video.png"/>
+		<e:Image id="img_tab_star" x="0" y="0" source="skin-tab-star.png" visible="false"/>
+		<e:Group id="btn_video" width="189" height="60" left="0"/>
+		<e:Group id="btn_star" width="189" height="60" right="0"/>
+	</e:Group>
+	<e:Rect id="rect_white_bar" width="617" height="3" y="220" horizontalCenter="0" fillColor="0xFFFFFF" visible="false"/>
+	<e:Image width="90%" height="680" y="250" scaleX="1" scaleY="1" source="skin_bg2.png" horizontalCenter="0"/>
+	<e:Scroller id="sc_skins" y="316" anchorOffsetY="0" width="90%" height="600" anchorOffsetX="0" horizontalCenter="0">
+		<e:Group id="gp_skin" height="576" width="576">
+			<e:layout>
+				<e:HorizontalLayout gap="0" />
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+	<e:List id="list_page_indicator" y="941" itemRendererSkinName="PageIndicatorItemRenderSkin" anchorOffsetX="0" width="200" anchorOffsetY="0" height="1" horizontalCenter="0">
+		<e:layout>
+			<e:HorizontalLayout gap="16" />
+		</e:layout>
+	</e:List>
+	<e:Button id="btn_ad" label="0/1" y="980" scaleX="1" scaleY="1" icon="skin-icon-ad.png" anchorOffsetX="0" width="360" anchorOffsetY="0" height="110" horizontalCenter="0" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="skin_btn_movie.png" source.down="skin_btn_movie.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_play" label="" y="980" width="360" horizontalCenter="0" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="skin-btn-play.png" source.down="skin-btn-play-down.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_friends" label="0/500" y="980" scaleX="1" scaleY="1" icon="skin-icon-star.png" width="360" horizontalCenter="0" height="120" visible="false">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="skin_btn_invite.png" source.down="skin_btn_invite.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Group id="show_ex" width="360" height="120" x="140" y="980">
+		<e:Image id="img_exbg" width="100%" height="100%" x="0" y="0" scaleX="1" scaleY="1" source="skin_exbg.png"/>
+		<e:Button id="btn_star_count" label="0/500" y="980" scaleX="1" scaleY="1" icon="skin-icon-star.png" width="360" horizontalCenter="0" height="120">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="skin_btn_invite.png" source.down="skin_btn_invite.png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Image id="img_exmerage" width="100%" height="100%" x="0" y="0" source="skin_exmerage.png"/>
+		<e:Label id="lb_ex" text="43445" x="0" y="0" width="100%" height="100%" size="40" bold="true" fontFamily="Arial" verticalAlign="middle" textAlign="center"/>
+	</e:Group>
+	<e:Image id="nowimg" width="120" height="120" y="66" horizontalCenter="0"/>
+	<e:Label id="nowimg_notice" text="" y="196.36" anchorOffsetX="0" width="450" anchorOffsetY="0" height="40" bold="true" verticalAlign="middle" textAlign="center" horizontalCenter="0"/>
+</e:Skin>

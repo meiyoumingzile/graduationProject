@@ -1,0 +1,192 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = this && this.__extends || function __extends(t, e) { 
+ function r() { 
+ this.constructor = t;
+}
+for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
+r.prototype = e.prototype, t.prototype = new r();
+};
+var SkinView = (function (_super) {
+    __extends(SkinView, _super);
+    function SkinView() {
+        var _this = _super.call(this) || this;
+        _this.pages = [];
+        _this._current_page = 0;
+        return _this;
+    }
+    SkinView.prototype.childrenCreated = function () {
+        var _this = this;
+        _super.prototype.childrenCreated.call(this);
+        app.pp.newStarSkinAmount = 0;
+        app.pp.pushData();
+        // this.gp_skin.width *= Constant.FullWidthScale;
+        this.btn_home.addEventListener("touchTap", this.onTapHome, this);
+        this.btn_video.addEventListener("touchTap", this.onTapVideo, this);
+        this.btn_star.addEventListener("touchTap", this.onTapStar, this);
+        this.btn_play.addEventListener("touchTap", function () {
+            // Common.invite().then(() => {
+            // 	this.close();
+            // 	app.ui.addPopup(new MatchView);
+            // });
+            _this.close();
+            app.ui.addPopup(new MatchView);
+        }, this);
+        this.btn_ad.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+            Common.showRAD('adSkin', _this.successInBuySkin.bind(_this));
+        }, this);
+        var skins = app.status.skinItemData.filter(function (v) { return v.price.type === 1 || v.price.type === 0; }).sort(function (a, b) { return (a.order - b.order); }).map(function (i) { return i.id; });
+        var skins_star = app.status.skinItemData.filter(function (v) { return v.price.type === 3; }).sort(function (a, b) { return (a.order - b.order); }).map(function (i) { return i.id; });
+        skins = skins.concat(skins_star);
+        var skinRenderData = skins.map(function (id) { return ({
+            id: id,
+            thumb: app.status.skinItemData[id - 1].thumb
+        }); });
+        var skinsNum = skins.length;
+        var pagesNum = Math.ceil(skinsNum / 9);
+        for (var i = 0; i < skinsNum; i++) {
+            var idx_1 = Math.floor(i / 9);
+            this.pages[idx_1] || (this.pages[idx_1] = []);
+            this.pages[idx_1].push(skinRenderData[i]);
+        }
+        var _loop_1 = function (page) {
+            var list = this_1.createSkinList(page);
+            list.allowMultipleSelection = false;
+            list.width = this_1.gp_skin.width;
+            list.height = this_1.gp_skin.height;
+            list.addEventListener(egret.Event.CHANGING, function (e) {
+                var item = list.selectedItem;
+                var ac = list.dataProvider;
+                ac.itemUpdated(item);
+                ac.itemUpdated(_this._selected_item);
+                _this.onSkinSelected(item);
+            }, this_1);
+            this_1.gp_skin.addChild(list);
+        };
+        var this_1 = this;
+        for (var _i = 0, _a = this.pages; _i < _a.length; _i++) {
+            var page = _a[_i];
+            _loop_1(page);
+        }
+        this.list_page_indicator.dataProvider = new eui.ArrayCollection(this.pages);
+        this.pageViewContr = new PagesViewController(this.sc_skins, function (index) {
+            _this.onPageChanged(index);
+        });
+        var idx = skins.indexOf(app.pp.currentSkinID);
+        this._selected_item = skinRenderData[idx];
+        // this.refreshInviteSkinProgress();
+        this.refreshView();
+        this.gp_skin.validateNow();
+    };
+    SkinView.prototype.createSkinList = function (arr) {
+        var list = new eui.List();
+        var layout = new eui.TileLayout();
+        layout.requestedColumnCount = 3;
+        layout.requestedRowCount = 3;
+        layout.columnAlign = eui.ColumnAlign.JUSTIFY_USING_GAP;
+        layout.verticalGap = 46;
+        layout.paddingLeft = layout.paddingRight = 20;
+        list.layout = layout;
+        list.itemRenderer = SkinItemRender;
+        list.dataProvider = new eui.ArrayCollection(arr);
+        return list;
+    };
+    SkinView.prototype.onPageChanged = function (index) {
+        this._current_page = index;
+        if (this._current_page === 0 || this._current_page === 1) {
+            this.img_tab_star.visible = false;
+            this.img_tab_video.visible = true;
+        }
+        else {
+            this.img_tab_star.visible = true;
+            this.img_tab_video.visible = false;
+        }
+        this.refreshView();
+    };
+    SkinView.prototype.onSkinSelected = function (skin) {
+        this._selected_item = skin;
+        if (app.pp.havingSkinIDs.includes(skin.id)) {
+            app.pp.currentSkinID = skin.id;
+            app.pp.pushData();
+            Game.inst.player.setSkin(skin.id);
+        }
+        this.refreshView();
+    };
+    /**更新上方显示,底部按钮,selectIndex */
+    SkinView.prototype.refreshView = function () {
+        var skin = this._selected_item;
+        if (!skin)
+            return;
+        var skinType = app.status.skinItemData[skin.id - 1].price.type;
+        var progress = app.pp.skinProgressData[skin.id] || 0;
+        var needNum = app.status.skinItemData[skin.id - 1].price.num;
+        var have = app.pp.havingSkinIDs.includes(skin.id);
+        if (skinType === 0 || have) {
+            this.btn_play.visible = true;
+            this.btn_ad.visible = false;
+            this.btn_star_count.visible = false;
+        }
+        else if (skinType === 1) {
+            this.btn_ad.visible = true;
+            this.btn_play.visible = false;
+            this.btn_star_count.visible = false;
+            this.btn_ad.label = progress + "/" + needNum;
+        }
+        else if (skinType === 3) {
+            this.btn_star_count.visible = true;
+            this.btn_ad.visible = false;
+            this.btn_play.visible = false;
+            progress = app.pp.starCount;
+            this.btn_star_count.label = progress + "/" + needNum;
+        }
+        for (var i = 0; i < this.gp_skin.numChildren; i++) {
+            var list = this.gp_skin.getChildAt(i);
+            var ac = list.dataProvider;
+            list.selectedIndex = ac.getItemIndex(skin);
+            ac.itemUpdated(skin);
+        }
+        this.list_page_indicator.selectedIndex = this._current_page;
+        // egret.log(this._selected_item.id);
+    };
+    SkinView.prototype.successInBuySkin = function () {
+        var skin = this._selected_item;
+        var id = skin.id;
+        var res = app.pp.tryBuySkin(id);
+        if (res) {
+            app.pp.currentSkinID = id;
+            app.pp.pushData();
+            Game.inst.player.setSkin(id);
+        }
+        this.refreshView();
+    };
+    SkinView.prototype.onTapHome = function () {
+        this.close();
+        app.ui.addPopup(new HomeView);
+    };
+    SkinView.prototype.onTapVideo = function () {
+        if (this._current_page === 0 || this._current_page === 1) {
+            //do nothing
+        }
+        else {
+            AudioPlayer.playSound("click.mp3");
+            this.pageViewContr.scrollToPage(0);
+            this.img_tab_star.visible = false;
+            this.img_tab_video.visible = true;
+        }
+    };
+    SkinView.prototype.onTapStar = function () {
+        if (this._current_page === 0 || this._current_page === 1) {
+            AudioPlayer.playSound("click.mp3");
+            this.pageViewContr.scrollToPage(2);
+            this.img_tab_star.visible = true;
+            this.img_tab_video.visible = false;
+        }
+        else {
+            // do nothing
+        }
+    };
+    return SkinView;
+}(BasePopup));
+__reflect(SkinView.prototype, "SkinView");
+//# sourceMappingURL=SkinView.js.map

@@ -1,0 +1,347 @@
+class PlatformFB {
+    leaderboardName = "rank"
+
+    invite_skin_data = null;
+
+    private _isPaymentsReady: boolean = false;
+    private _catalog;
+    async getCatalogAsync() {
+        if (this._catalog) return this._catalog;
+        try {
+            let catalog = await FBInstant.payments.getCatalogAsync();
+            this._catalog = catalog;
+            egret.log(catalog);
+            return this._catalog;
+        } catch (e) {
+            egret.log("getCatalogAsync error:" + e.code || e.message || e);
+            return null;
+        }
+    }
+
+    async purchaseAsync(productId: string) {
+        if (this._isPaymentsReady) {
+            try {
+                let config: any = {};
+                config.productID = productId;
+                let product = await FBInstant.payments.purchaseAsync(config);
+                await FBInstant.payments.consumePurchaseAsync(product.purchaseToken);
+                return true;
+            } catch (e) {
+                egret.log("purchaseAsync error:" + e.code || e.message || e);
+            }
+        }
+        return false;
+    }
+
+    async checkPurchaseAsync() {
+        if (this._isPaymentsReady) {
+            try {
+                let purchases = await FBInstant.payments.getPurchasesAsync();
+                let len: int = purchases.length;
+                let result: Array<FBInstant.Purchase> = [];
+                for (let i: int = 0; i < len; i++) {
+                    let purchase: FBInstant.Purchase = purchases[i];
+                    result.push(purchase);
+                    await FBInstant.payments.consumePurchaseAsync(purchase.purchaseToken);
+                }
+                return result;
+            } catch (e) {
+                egret.log("checkPurchase error:" + e.code || e.message || e);
+            }
+        }
+        return null;
+    }
+
+    async onPaymentsReady() {
+        let platform = FBInstant.getPlatform();
+        if (platform != "IOS") {
+            try {
+                FBInstant.payments.onReady(() => {
+                    this._isPaymentsReady = true;
+                });
+            } catch (e) {
+                egret.log("paymentsReady error:" + e.code || e.message || e);
+            }
+        }
+    }
+    get isIOS(): boolean {
+        let platform = FBInstant.getPlatform();
+        return platform == "IOS";
+    }
+    get isPaymentsReady(): boolean {
+        return this._isPaymentsReady;
+    }
+    setLoadingProgress(value) {
+        FBInstant.setLoadingProgress(value);
+    }
+
+    async getPlayerData(keys: string[]) {
+        return await FBInstant.player.getDataAsync(keys);
+    }
+
+    async setPlayerData(obj: Object) {
+        try {
+            await FBInstant.player.setDataAsync(obj);
+        }
+        catch (e) {
+            egret.log("set data error", JSON.stringify(e));
+        }
+    }
+    async choose(opt: any = {}, place: string = "any") {
+        let bo = true;
+        try {
+            await FBInstant.context.chooseAsync(opt);
+            Common.onContextChanged();
+        } catch (e) {
+            if (e.code != "SAME_CONTEXT") {
+                bo = false;
+            }
+            console.log("auto choose failed:", e);
+        }
+        return bo;
+    }
+    async switchContext(id: string) {
+        return await FBInstant.context.switchAsync(id);
+    }
+    getContextID() {
+        return FBInstant.context.getID();
+    }
+    name() {
+        return FBInstant.player.getName();
+    }
+    photo() {
+        return FBInstant.player.getPhoto();
+    }
+    id() {
+        return FBInstant.player.getID();
+    }
+    entryData() {
+        return FBInstant.getEntryPointData()
+    }
+    getLocale() {
+        return FBInstant.getLocale()
+    }
+
+    async switchGame(appId: string, data?: any) {
+        let bo = true;
+        let origin = {
+            switchGameInfo: { appId: AppConstant.APP_ID, appName: AppConstant.APP_NAME },
+            type: AppConstant.APP_NAME
+        };
+        try {
+            await FBInstant.switchGameAsync(appId, Object.assign(origin, data));
+        } catch (error) {
+            bo = false;
+            console.log("switch game error", JSON.stringify(error))
+        }
+        return bo;
+    }
+
+    async share(msg: { img?: string, text?: string, data?: any, intent?: string } = {}) {
+        const {img, intent, text, data} = msg;
+        try {
+            await FBInstant.shareAsync({
+                intent: intent || "INVITE",
+                image: img,
+                text: text,
+                data: data
+            });
+        } catch (error) {
+            egret.log("share error", JSON.stringify(error));
+        }
+    }
+
+    updateStatus(info: any = {}) {
+        return FBInstant.updateAsync({
+            action: 'CUSTOM',
+            cta: info.cta || 'Play now',
+            image: info.image || '',
+            text: info.text || 'This game is awesome! You should try it! 😆',
+            template: info.template || 'SHOPPING_INVITE',
+            data: info.data,
+            strategy: info.strategy || 'IMMEDIATE',
+            notification: info.notification || 'NO_PUSH'
+        });
+    }
+
+    private leaderboard_: FBInstant.Leaderboard;
+    async getFriendRankList(): Promise<FBInstant.LeaderboardEntry[]> {
+        let ret: FBInstant.LeaderboardEntry[];
+        try {
+            this.leaderboard_ = this.leaderboard_ || await FBInstant.getLeaderboardAsync(this.leaderboardName);
+            ret = await this.leaderboard_.getConnectedPlayerEntriesAsync(100, 0);
+        } catch (err) {
+            if (err.code == Constant.ErrorCode.RATE_LIMITED || err.code == Constant.ErrorCode.NETWORK_FAILURE) {
+                egret.log("getFriendRankList ", err.code);
+                await Utils.wait(2000);
+                return await this.getFriendRankList();
+            } else {
+                egret.log("getFriendRankList error", err);
+            }
+        }
+        egret.log("getFriendRankList ok");
+        return ret || [];
+    }
+    private _world_selfEntry: RankPlayerVO;
+    async getWorldRankList(): Promise<FBInstant.LeaderboardEntry[]> {
+        let ret: FBInstant.LeaderboardEntry[];
+        try {
+            this.leaderboard_ = this.leaderboard_ || await FBInstant.getLeaderboardAsync(this.leaderboardName);
+            let count = await this.leaderboard_.getEntryCountAsync();
+            console.log("worldRankCount:", count);
+            if (count == 0) return [];
+            ret = await this.leaderboard_.getEntriesAsync(Math.min(100, count), 0);
+            let entry = await this.leaderboard_.getPlayerEntryAsync();
+            console.log("Player entry: ", entry);
+            this._world_selfEntry = entry ? RankPlayerVO.createFromLeaderBoardEntry(entry) : null;
+        } catch (err) {
+            if (err.code == Constant.ErrorCode.RATE_LIMITED || err.code == Constant.ErrorCode.NETWORK_FAILURE) {
+                egret.log("getWorldRankList ", err.code);
+                await Utils.wait(2000);
+                return await this.getWorldRankList();
+            } else {
+                egret.log("getWorldRankList error", err);
+            }
+        }
+        egret.log("getWorldRankList ok");
+        return ret || [];
+    }
+
+    friends_: FBInstant.ConnectedPlayer[];
+    async getConnectedFriendList() {
+        try {
+            this.friends_ = this.friends_ || await FBInstant.player.getConnectedPlayersAsync();
+        } catch (err) {
+            egret.log("get connected friends error", JSON.stringify(err));
+        }
+        return this.friends_.concat() || [];
+    }
+
+    async updateScore(score: number, extraData?: string) {
+        let ret: FBInstant.LeaderboardEntry = null;
+        this.leaderboard_ = this.leaderboard_ || await FBInstant.getLeaderboardAsync(this.leaderboardName);
+        try {
+            ret = await this.leaderboard_.setScoreAsync(score, extraData);
+        } catch (err) {
+            if (err.code == Constant.ErrorCode.RATE_LIMITED || err.code == Constant.ErrorCode.NETWORK_FAILURE) {
+                console.log("updateScore ", err.code);
+                await Utils.wait(2000);
+                return await this.updateScore(score, extraData);
+            } else {
+                console.log(`updateScore error`, err);
+            }
+        }
+        console.log("updateScore ok", score, extraData);
+        return ret;
+    }
+
+    async createCtx(playerId: string) {
+        let bo = true
+        try {
+            // this.logEvent("create_detail", { phase: -1 })
+            await FBInstant.context.createAsync(playerId);
+            Common.onContextChanged();
+        } catch (e) {
+            if (e.code != "SAME_CONTEXT") {
+                bo = false;
+            }
+        }
+        // this.logEvent("create_detail", { phase: bo ? 1 : -1 });
+        return bo;
+    }
+
+    async canCreateShortcutAsync() {
+        try {
+            return await FBInstant.canCreateShortcutAsync();
+        } catch (e) {
+            return false;
+        }
+    }
+
+    async createShortcutAsync() {
+        try {
+            await FBInstant.createShortcutAsync();
+            return { ok: true, code: undefined };
+        } catch (e) {
+            return { ok: false, code: e.code };
+        }
+    }
+
+    logEvent(name: string, data?: any, valueSum: number = 1) {
+        egret.log("name", name, "data", JSON.stringify(data));
+        FBInstant.logEvent(name, valueSum, data);
+    }
+
+    async setSessionData(data) {
+        try {
+            egret.log('setSessionData', data);
+            await FBInstant.setSessionData(data);
+            return true;
+        } catch (e) {
+            egret.log(e);
+            return false;
+        }
+    }
+
+    // async checkBotSubscribe() {
+    //     let can = false;
+    //     try {
+    //         can = await FBInstant.player.canSubscribeBotAsync();
+    //     } catch (e) {
+    //         egret.log("can bot e", e);
+    //     }
+    //     can && await new Promise<void>(resolve => {
+    //         let view = new BotSubscribeView;
+    //         app.ui.addPopup(view);
+    //         view.btn_turn_on.once(egret.TouchEvent.TOUCH_TAP, async () => {
+    //             try {
+    //                 this.logEvent("bot_subscribe", { result: -1 })
+    //                 await FBInstant.player.subscribeBotAsync();
+    //                 this.logEvent("bot_subscribe", { result: 1 })
+    //             } catch (e) {
+    //                 this.logEvent("bot_subscribe", { result: 0 })
+    //                 egret.log("bot e", e);
+    //             }
+    //             view.close()
+    //             resolve()
+    //         }, null);
+
+    //         view.btn_not_now.once(egret.TouchEvent.TOUCH_TAP, () => { view.close(), resolve() }, null);
+	// 	    this.logEvent(Log.EventType.LoadDetail, { type: "botPage" })
+    //     })
+    // }
+
+    async checkBotSubscribe() {
+        try {
+            let bo = await FBInstant.player.canSubscribeBotAsync();
+            if (bo) {
+                this.logEvent("bot_subscribe", { result: -1 })
+                await FBInstant.player.subscribeBotAsync();
+                this.logEvent("bot_subscribe", { result: 1 })
+            }
+        } catch (e) {
+            this.logEvent("bot_subscribe", { result: 0 })
+        }
+    }
+
+    async tryCreateShortcut() {
+        let pp = app.pp;
+        let support = await this.canCreateShortcutAsync();
+        egret.log("shortcut:", pp.shortcutClaimed, !support, pp.shortcutRefused >= 2)
+        if (pp.shortcutClaimed || !support || pp.shortcutRefused >= 2) return;
+        app.platform.logEvent(Log.EventType.SaveDetail, { type: app.status.playerType, result: 2 });
+        let rst = await this.createShortcutAsync()
+        if (rst.ok) {
+            app.platform.logEvent(Log.EventType.SaveDetail, { type: app.status.playerType, result: 1 });
+            pp.shortcutClaimed = true;
+        } else {
+            app.platform.logEvent(Log.EventType.SaveDetail, { type: app.status.playerType, result: 0 });
+            pp.shortcutRefused++;
+        }
+        pp.pushData();
+    }
+
+    getWorldSelfEntry() {
+        return this._world_selfEntry;
+    }
+}

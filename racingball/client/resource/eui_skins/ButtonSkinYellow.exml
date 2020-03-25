@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ButtonSkinYellow" states="up,down,disabled" minHeight="50" minWidth="100" currentState="up" xmlns:e="http://ns.egret.com/eui">
+    <e:Image source="btn2-up.png" source.down="btn2-down.png"/>
+	<e:Group anchorOffsetY="0" height="100" anchorOffsetX="0" width="100%" y.down="5">
+		<e:Group horizontalCenter="0" verticalCenter="0">
+			<e:Image id="iconDisplay" x="0" y="0" source="icon-multi.png"/>
+			<e:Label id="labelDisplay" size="39" text="PLAY SINGLE" verticalCenter.down="4" x="80" verticalAlign="middle" textColor="0xffffff" verticalCenter="4"/>
+			<e:layout>
+				<e:BasicLayout/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+</e:Skin>

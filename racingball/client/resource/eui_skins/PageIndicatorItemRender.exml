@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="PageIndicatorItemRenderSkin" states="up,down,disabled" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="1690fd3f997" ></w:Config>
+	<e:Image id="img_black" alpha.up="1" source="nextpage2.png"/>
+	<e:Image id="img_white" includeIn="down" alpha.up=".5" source="nextpage1.png"/>
+</e:Skin>

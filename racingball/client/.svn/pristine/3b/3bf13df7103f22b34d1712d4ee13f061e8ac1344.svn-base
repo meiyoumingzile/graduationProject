@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="CommonShareUISkin" width="600" height="315" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1692cd119d9" ></w:Config>
+	<e:Image id="img_bg" horizontalCenter="0" verticalCenter="0" source=""/>
+	<e:Group x="35" y="35">
+		<e:Image x="0" y="0" source="share-common-head-bg.png"/>
+		<e:Image id="img_mask" horizontalCenter="0" verticalCenter="0" source="share-common-head.png"/>
+		<e:Image id="img_head" horizontalCenter="0" verticalCenter="0" source="share-common-head.png" width="114" height="114"/>
+		<e:Image x="82" y="2" source="share-common-point.png"/>
+	</e:Group>
+</e:Skin>

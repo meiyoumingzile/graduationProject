@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SkinViewSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="1690f66bd6f"></w:Config>
+	<e:Button id="btn_home" label="" x="20" y="20">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="end-btn-home.png" source.down="end-btn-home-down.png" />
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" />
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label text="S K I N S" y="74" size="56" horizontalCenter="0" />
+	<e:Group id="gp_tab_bar" y="150" horizontalCenter="0">
+		<e:Image id="img_tab_video" source="skin-tab-video.png"/>
+		<e:Image id="img_tab_star" x="0" y="0" source="skin-tab-star.png" visible="false"/>
+		<e:Group id="btn_video" width="189" height="60" left="0"/>
+		<e:Group id="btn_star" width="189" height="60" right="0"/>
+	</e:Group>
+	<e:Rect id="rect_white_bar" width="617" height="3" y="220" horizontalCenter="0" fillColor="0xFFFFFF"/>
+	<e:Scroller id="sc_skins" y="250" anchorOffsetY="0" width="576" height="576" horizontalCenter="0">
+		<e:Group id="gp_skin" height="576" width="576">
+			<e:layout>
+				<e:HorizontalLayout gap="0" />
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+	<e:List id="list_page_indicator" y="845" horizontalCenter="4.5" itemRendererSkinName="PageIndicatorItemRenderSkin">
+		<e:layout>
+			<e:HorizontalLayout gap="16" />
+		</e:layout>
+	</e:List>
+	<e:Button id="btn_ad" label="0/1" y="915" scaleX="1" scaleY="1" horizontalCenter="0" icon="skin-icon-ad.png" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn3-up.png" source.down="btn3-down.png" />
+				<e:Group anchorOffsetY="0" horizontalCenter="0" height="95" y="0" y.down="5">
+					<e:Image id="iconDisplay" source="rank-icon-invite.png" verticalCenter="0" y="74" scaleX="1" scaleY="1" />
+					<e:Label id="labelDisplay" verticalCenter="2" text="INVITE" size="35" x="50" y="73.00000000000001" scaleX="1"
+					         scaleY="1" textColor="0xf79e3a" />
+					<e:layout>
+						<e:BasicLayout/>
+					</e:layout>
+				</e:Group>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_play" label="" y="915" horizontalCenter="0" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="skin-btn-play.png" source.down="skin-btn-play-down.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_star_count" label="0/500" y="915" scaleX="1" scaleY="1" horizontalCenter="0" icon="skin-icon-star.png">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="invite-btn.png" source.down="invite-btn-down.png" />
+				<e:Group anchorOffsetY="0" horizontalCenter="0" height="95" y="0" y.down="5">
+					<e:Image id="iconDisplay" source="rank-icon-invite.png" verticalCenter="0" y="74" scaleX="1" scaleY="1" />
+					<e:Label id="labelDisplay" verticalCenter="2" text="INVITE" size="35" x="60" y="73.00000000000001" scaleX="1"
+					         scaleY="1" textColor="0xffffff" />
+					<e:layout>
+						<e:BasicLayout/>
+					</e:layout>
+				</e:Group>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

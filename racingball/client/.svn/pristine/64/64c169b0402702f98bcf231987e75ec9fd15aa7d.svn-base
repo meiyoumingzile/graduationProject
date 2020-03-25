@@ -1,0 +1,137 @@
+{
+  "16903b6ba88": {
+    "path": "modules/ui/HomeView.ts",
+    "class": "HomeView",
+    "parentPath": ""
+  },
+  "169048781c9": {
+    "path": "modules/ui/GameView.ts",
+    "class": "GameView",
+    "parentPath": ""
+  },
+  "16909da4a42": {
+    "path": "modules/ui/RankView.ts",
+    "class": "RankView",
+    "parentPath": "",
+    "bindingDataTestObj": []
+  },
+  "16909e157ca": {
+    "path": "modules/ui/RankItemRender.ts",
+    "class": "RankItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "1690a31d51c": {
+    "path": "modules/ui/WorldRankItemRender.ts",
+    "class": "WorldRankItemRender",
+    "parentPath": ""
+  },
+  "1690a33053f": {
+    "path": "modules/ui/WorldRankItemRender.ts",
+    "class": "WorldRankItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "1690a342b26": {
+    "path": "modules/ui/FriendRankItemRender.ts",
+    "class": "FriendRankItemRender",
+    "parentPath": ""
+  },
+  "1690a34c73b": {
+    "path": "modules/ui/FriendRankItemRender.ts",
+    "class": "FriendRankItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "1690ee36880": {
+    "path": "modules/ui/ReviveView.ts",
+    "class": "ReviveView",
+    "parentPath": ""
+  },
+  "1690f66bd6f": {
+    "path": "modules/ui/SkinView.ts",
+    "class": "SkinView",
+    "parentPath": ""
+  },
+  "1690f6fff84": {
+    "path": "modules/ui/SkinItemRender.ts",
+    "class": "SkinItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "1690fd3f997": {
+    "path": "modules/ui/PageIndicatorItemRender.ts",
+    "class": "PageIndicatorItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "1690ff00f4d": {
+    "path": "modules/ui/EndView.ts",
+    "class": "EndView",
+    "parentPath": ""
+  },
+  "16913050793": {
+    "path": "modules/ui/MatchView.ts",
+    "class": "MatchView",
+    "parentPath": ""
+  },
+  "16913b4201b": {
+    "path": "modules/ui/MatchItemRender.ts",
+    "class": "MatchItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "169228079b5": {
+    "path": "modules/ui/InviteView.ts",
+    "class": "InviteView",
+    "parentPath": ""
+  },
+  "16922904e7c": {
+    "path": "modules/ui/InviteSkinItemRender.ts",
+    "class": "InviteSkinItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "16923cce86e": {
+    "path": "modules/ui/InvitePortraitItemRender.ts",
+    "class": "InvitePortraitItemRender",
+    "parentPath": "resource/eui_skins/ItemRendererSkin.exml"
+  },
+  "1692cc97327": {
+    "path": "modules/share/ChallengeResultUI.ts",
+    "class": "ChallengeResultUI",
+    "parentPath": ""
+  },
+  "1692cc9b72b": {
+    "path": "modules/share/ChallengeShareUI.ts",
+    "class": "ChallengeShareUI",
+    "parentPath": ""
+  },
+  "1692cd119d9": {
+    "path": "modules/share/CommonShareUI.ts",
+    "class": "CommonShareUI",
+    "parentPath": ""
+  },
+  "1692cd1b6ac": {
+    "path": "modules/share/SkinShareUI.ts",
+    "class": "SkinShareUI",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": false,
+    "globalBindingDataTestObj": []
+  },
+  "1696b95b416": {
+    "path": "modules/ui/BotSubscribeView.ts",
+    "class": "BotSubscribeView",
+    "parentPath": ""
+  },
+  "1696be43191": {
+    "path": "modules/ui/Loading.ts",
+    "class": "Loading",
+    "parentPath": ""
+  },
+  "1696be9b4d9": {
+    "path": "modules/ui/LoadingView.ts",
+    "class": "LoadingView",
+    "parentPath": ""
+  },
+  "1696c09a69b": {
+    "path": "modules/ui/BeforeEndView.ts",
+    "class": "BeforeEndView",
+    "parentPath": ""
+  }
+}

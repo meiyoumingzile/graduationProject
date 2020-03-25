@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="InviteViewSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing">
+	<w:Config id="169228079b5"></w:Config>
+	<e:Button id="btn_home" label="" x="20" y="20">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="end-btn-home.png" source.down="end-btn-home-down.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="txt_refer" text="Refer 3 Friends" y="160" horizontalCenter="0" size="58" textColor="0x4c98ff" />
+	<e:Label text="Only New Player Login Could You Get It" y="245" horizontalCenter="0" size="32" textColor="0xc7c7c7"
+	         textAlign="center" wordWrap="true"  lineSpacing="10"/>
+	<e:Image y="271.5" source="invite-skin-bg.png" horizontalCenter="0" />
+	<e:Scroller id="sc_skins" width="100%" y="320" horizontalCenter="0" height="253">
+		<e:Group id="gp_skin">
+			<e:layout>
+				<e:HorizontalLayout gap="0" paddingRight="0" verticalAlign="middle" />
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+	<e:Button id="btn_invite" label="0/1" y="627" scaleX="1" scaleY="1" horizontalCenter="0"
+	          icon="invite-icon-friend.png">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%"  source="invite-btn.png" source.down="invite-btn-down.png"/>
+				<e:Group anchorOffsetY="0" horizontalCenter="0" height="95" y="0" y.down="3">
+					<e:Image id="iconDisplay" verticalCenter="0" y="74" scaleX="1" scaleY="1"  source="invite-icon-friend.png"/>
+					<e:Label id="labelDisplay" verticalCenter="2" text="1/3" size="50" x="70" y="73.00000000000001" scaleX="1"
+					         scaleY="1"  textColor="0xffffff"/>
+					<e:layout>
+						<e:BasicLayout/>
+					</e:layout>
+				</e:Group>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_play" label="" y="627" scaleX="1" scaleY="1" horizontalCenter="0" icon="invite-icon-friend.png" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="skin-btn-play.png" source.down="skin-btn-play-down.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label text="Friends Invited:" y="800" horizontalCenter="0" size="36" textColor="0xC7C7C7" textAlign="center" wordWrap="true"/>
+	<e:Scroller id="sc_portrait" width="100%" y="877">
+		<e:Group id="gp_portrait">
+			<e:List id="list_invite" itemRendererSkinName="InvitePortraitItemRenderSkin" scaleX="1" scaleY="1" itemRenderer="InvitePortraitItemRender">
+				<e:layout>
+				<e:HorizontalLayout gap="45" paddingLeft="20" paddingRight="20"/>
+				</e:layout>
+			</e:List>
+			<e:layout>
+				<e:HorizontalLayout horizontalAlign="left"/>
+			</e:layout>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.ItemRendererSkin1" states="up,down,disabled" minHeight="50" minWidth="100" xmlns:e="http://ns.egret.com/eui">
+    <e:Image width="100%" height="100%" alpha.disabled="0.5"
+            
+             source.down="" scale9Grid="9,9,140,49" source=""/>
+    <e:Label id="labelDisplay" top="8" bottom="8" left="8" right="8"
+             size="30" fontFamily="Tahoma"
+             verticalAlign="middle" textAlign="center" text="{data.label}" textColor="0x4aabbb"/>
+</e:Skin>

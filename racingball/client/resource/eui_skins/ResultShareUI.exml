@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ResultShareUISkin" width="600" height="315" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<e:Image id="img_bg" horizontalCenter="0" verticalCenter="0" source="result-share.jpg"/>
+	<e:Image source="result-name-bg.png" x="-6" y="203"/>
+	<e:Group x="46" y="60">
+		<e:Image source="result-head.png" x="0" y="0"/>
+		<e:Image id="img_mask" source="result-head-mask.png" horizontalCenter="0" verticalCenter="0"/>
+		<e:Image id="img_head" source="result-head-mask.png" width="123" height="123" horizontalCenter="0" verticalCenter="0"/>
+		<e:Image x="97" y="5" source="share-common-point.png" scaleX="1.1" scaleY="1.1"/>
+	</e:Group>
+	<e:Label id="lbl_rank" text="Label" y="207" size="55" horizontalCenter="-179"/>
+</e:Skin>

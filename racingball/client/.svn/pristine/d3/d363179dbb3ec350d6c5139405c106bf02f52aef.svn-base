@@ -1,0 +1,73 @@
+namespace AudioPlayer {
+
+	let _mute = false;
+	export function setMute(v: boolean) {
+		if (_mute != v) {
+			_mute = v;
+			egret.localStorage.setItem("mute", v ? "1" : "0");//保存数据
+		}
+	}
+
+	export function isMute() {
+		return _mute;
+	}
+
+	export function init() {
+		_mute = egret.localStorage.getItem("mute") == "1";//读取数据
+	}
+
+	let _bgmChannel: egret.SoundChannel;//控制程序中的声音
+	let _bgm: egret.Sound;//使用声音
+	export function playMusic() {
+		_pausePosition = 0;
+		if (_mute) return;
+		let promise = RES.getResAsync("bgm.mp3")//异步方式获取配置里的资源
+		promise && promise.then((res: egret.Sound) => { //实现异步函数的顺序执行 
+			_bgm = res;
+			_bgmChannel && _bgmChannel.stop();//停止在该声道中播放声音。
+			_bgmChannel = res.play(0, 1);//生成一个新的 SoundChannel 对象来播放该声音(startTime,loops)
+			_bgmChannel.once(egret.Event.SOUND_COMPLETE, _onMusicOver, null);//在声音完成播放后调度
+		})
+	}
+
+	function _onMusicOver() {
+		_bgmChannel && (_bgmChannel = undefined);
+	}
+
+	let _pausePosition = 0
+	export function pauseMusic() {//暂停音乐
+		if (_bgmChannel) {
+			_pausePosition = _bgmChannel.position;
+			_bgmChannel.stop();
+			_bgmChannel = undefined;
+		}
+	}
+
+	export function resumeMusic() {//中断音乐
+		if (_bgm && !_bgmChannel && _pausePosition) {
+			_bgmChannel = _bgm.play(_pausePosition, 1);
+			_bgmChannel.once(egret.Event.SOUND_COMPLETE, _onMusicOver, null);
+		}
+	}
+
+	export function stopMusic() {
+		_pausePosition = 0;
+		if (_bgmChannel) {
+			let channel = _bgmChannel;
+			_bgmChannel = undefined;
+
+			channel.once(egret.Event.SOUND_COMPLETE, () => {
+				egret.Tween.removeTweens(channel);//删除一个对象上的全部 Tween 动画
+			}, null);
+			egret.Tween.get(channel).to({ volume: 0 }, 1000).call(() => {
+				channel.stop()
+			});
+		}
+	}
+
+	export function playSound(name: string) {
+		if (_mute) return;
+		let sd = RES.getRes(name) as egret.Sound //同步方式获取缓存的已经加载成功的资源
+		sd && sd.play(0, 1);
+	}
+}

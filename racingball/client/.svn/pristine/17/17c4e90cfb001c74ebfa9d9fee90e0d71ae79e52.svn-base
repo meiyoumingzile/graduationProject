@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MatchViewSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
+	<w:Config id="16913050793" ></w:Config>
+	<e:Rect height="100%" width="100%" fillAlpha="0.6"/>
+	<e:Label id="txt_progress" text="Matching  0/12" y="308" horizontalCenter="0" size="42"/>
+	<e:Group y="362" horizontalCenter="0">
+		<e:Image x="0" y="0" source="match-bg.png"/>
+		<e:Group id="group_progressbar" y="8" horizontalCenter="0" width="520" height="55">
+			<e:Image id="img_progressbar_black" source="match-progressbar_black.png" y="0" x="0"/>
+			<e:Image id="img_progressbar_yellow" source="match-progressbar_yellow.png" y="0" x="0"/>
+			<e:Rect id="rect_mask" width="520" height="100%" scaleX="0"/>
+		</e:Group>
+		<e:Group id="gp" anchorOffsetY="0" horizontalCenter="0" y="74">
+			<e:layout>
+				<e:TileLayout horizontalGap="30" verticalGap="10" requestedRowCount="3" requestedColumnCount="4"/>
+			</e:layout>
+		</e:Group>
+	</e:Group>
+</e:Skin>

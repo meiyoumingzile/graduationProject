@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="InviteSkinItemRenderSkin" states="up,down,disabled" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="default_ball.png" horizontalCenter="0" verticalCenter="0"/>
+
+	<w:Config id="16922904e7c" ></w:Config>
+</e:Skin>

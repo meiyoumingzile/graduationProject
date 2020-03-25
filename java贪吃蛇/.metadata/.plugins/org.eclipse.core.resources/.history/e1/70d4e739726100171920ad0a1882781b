@@ -1,0 +1,132 @@
+package myPackage1;
+
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import javax.swing.JOptionPane;
+
+
+public class Snake implements Runnable{
+	public String name="";
+	public boolean isDie=false;
+	private int type;
+	private int nowLen;
+	public v2 pos=new v2(0,0);
+	public v2 fp=new v2(0,0);
+	public ArrayList<SnakeNode> list=new ArrayList<SnakeNode>();
+	public int willRiseLen=0;//将要增长的长度
+	
+	public Thread thread=new Thread(this);///这里需要加入线程，绘图的操作线程
+	
+	public Snake(v2 myPos,v2 fp,int len,int type,String name){
+		this.name=name;
+		this.pos.set(myPos);
+		this.fp.set(fp);
+		int kind=fp.y==0?0:1;
+		SnakeNode head=new SnakeNode(myPos.x,myPos.y,kind);
+		this.arriveDot(myPos.x,myPos.y,'H');
+		this.list.add(head);
+		if(this.fp.y==0){
+			for(int i=1;i<len;i++){
+				this.arriveDot(myPos.x-30*i,myPos.y,'S');
+				this.list.add(new SnakeNode(this.pos.x-30*i*fp.x,this.pos.y,2));
+				
+			}
+		}else if(this.fp.x==-1&&this.fp.y==0){
+			
+		}
+		this.thread.start();
+	}
+	@Override
+	public void run() {
+		while(true){
+			try {
+				Thread.sleep(MainForms.main.delay);
+			} catch (InterruptedException e){
+				e.printStackTrace();
+			}
+			if(this.isDie==false){
+				if(this.move()){
+					this.over("死了");
+				}
+			}else{
+				break;
+			}
+		}
+	}
+	
+	public boolean move(){//正常的移动，
+		if(this.visWillDie(this.fp))
+			return true;
+		SnakeNode head=this.list.get(0);
+		head.setType(2);//头变身子
+		this.list.add(0,new SnakeNode(head.pos.x+30*this.fp.x,head.pos.y+30*this.fp.y,(this.fp.y==0?0:1)));
+		this.arriveDot(head.pos.x+30*this.fp.x,head.pos.y+30*this.fp.y,'S');
+		if(this.willRiseLen==0){
+			int x=this.list.get(this.list.size()-1).pos.x;
+			int y=this.list.get(this.list.size()-1).pos.y;
+			this.leaveDot(x, y);
+			this.list.remove(this.list.size()-1);
+		}else{
+			this.willRiseLen--;
+		}
+		
+		return false;
+	}
+	
+	public boolean move(v2 fp){//控制方向的的移动，
+		if(this.visWillDie(fp))
+			return true;
+		if(this.fp.x==0&&this.fp.y==-fp.y||this.fp.y==0&&this.fp.x==-fp.x)
+			return false;
+		this.fp=fp;
+		SnakeNode head=this.list.get(0);
+		head.setType(2);
+		this.list.add(0,new SnakeNode(head.pos.x+30*fp.x,head.pos.y+30*fp.y,(fp.y==0?0:1)));
+		this.arriveDot(head.pos.x+30*fp.x,head.pos.y+30*fp.y,'S');
+		if(this.willRiseLen==0){
+			int x=this.list.get(this.list.size()-1).pos.x;
+			int y=this.list.get(this.list.size()-1).pos.y;
+			this.leaveDot(x, y);
+			this.list.remove(this.list.size()-1);
+		}else{
+			this.willRiseLen--;
+		}
+		return false;
+	}
+	public void arriveDot(int x,int y,char ch){
+		for(int i=0;i<Sence.blankDot.size();i++){
+			if(Sence.blankDot.get(i).x==x&&Sence.blankDot.get(i).y==y){
+				Sence.blankDot.remove(i);
+				Sence.mapp[x/30][(y-20)/30]=ch;
+				break;
+			}
+		}
+	}
+	public void leaveDot(int x,int y){
+		Sence.mapp[x/30][(y-20)/30]=' ';
+		Sence.blankDot.add(new v2(x,y));
+	}
+	public void add(int willRiseLen){//吃到东西
+		this.willRiseLen=willRiseLen;
+	}
+	public boolean visWillDie(v2 fp){//判断死亡
+		int x=this.list.get(0).pos.x/30+fp.x;
+		int y=(this.list.get(0).pos.y-20)/30+fp.y;
+		if(Sence.mapp[x][y]=='O'||Sence.mapp[x][y]=='S'){
+			return true;
+		}
+		return false;
+	}
+	public void over(String s){
+		this.isDie=true;
+		JOptionPane.showMessageDialog(null, s, "结束", JOptionPane.ERROR_MESSAGE);		
+		System.exit(0);
+	}
+	public void addAi(){
+		
+	}
+}

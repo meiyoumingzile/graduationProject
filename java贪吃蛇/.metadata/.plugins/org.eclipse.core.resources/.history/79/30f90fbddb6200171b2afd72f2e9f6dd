@@ -1,0 +1,180 @@
+package myPackage1;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class AI1 {
+	public class Node{
+		v2 pos;
+		int len;
+		Node[] child;
+		Node parent;
+		Node(int n){
+			this.child=new Node[n];
+		}
+		Node(v2 pos,int len){
+			this.pos=new v2(pos);
+			this.len=len;
+		}
+		Node(int x,int y,int len,int n){
+			pos=new v2(x,y);
+			this.len=len;
+			this.child=new Node[n];
+		}
+		
+		public Node clone(){
+			Node node=new Node(this.pos.x,this.pos.y,this.len,this.child.length);
+			node.parent=this.parent;
+			for(int i=0;i<this.child.length;i++){
+				node.child[i]=this.child[i];
+			}
+			return node;
+		}
+	}
+	
+	public class Tree{
+		Node head;
+		Tree(v2 pos,int n){
+			head=new Node(pos.x,pos.y,0,n);
+		}
+		
+	}
+	
+	boolean canArriveFood=false;
+	boolean canArriveTail=false;
+	int fx[]={0,0,1,-1,1,1,-1,-1};
+	int fy[]={1,-1,0,0,1,-1,1,-1};
+	Tree loadTree=null;
+	Snake selfSnake=null;
+	
+	public v2 nextStep=new v2(0,0);
+	
+	public AI1(Snake selfSnake){
+		this.selfSnake=selfSnake;
+	}
+	
+	public void search(v2 pos, v2 fp){///////此类里的pos的位置都是数组下标
+		loadTree=new Tree(pos,4); 
+		ArrayList<v2> canArriveDot=this.getCanForWordDot(pos, fp);
+		if(canArriveDot.size()==0){
+			this.nextStep.set(pos.x+1,pos.y);
+			return;
+		}else if(canArriveDot.size()==1){
+			this.nextStep.set(canArriveDot.get(0));
+			return;
+		}else{
+			for(int i=0;i<canArriveDot.size();i++){
+				this.bfs(canArriveDot.get(i), this.getFp(pos,canArriveDot.get(i)));
+				if(this.canArriveTail){
+					this.nextStep.set(canArriveDot.get(i));
+				}else{
+					ArrayList<v2> nextDot=this.getNotForWordDot(canArriveDot.get(i), this.getFp(pos,canArriveDot.get(i)));
+					for(int j=0;j<nextDot.size();j++){	
+						this.nextStep.set(nextDot.get(j));
+						return;
+					}
+				}
+			}
+		}
+		
+	}
+	public void bfs(v2 pos, v2 fp){
+		this.canArriveTail=false;
+		this.canArriveFood=false;
+		//loadTree=new Tree(pos,4); 
+		//this.load.clear();
+		//que.clear();
+		//Node nowNode=loadTree.head;
+		//isAlreadyArrive[nowNode.pos.x][nowNode.pos.y]=true;
+		boolean[][] vis=new boolean[Sence.mappSize.x][Sence.mappSize.y];
+		ArrayList<Node> que=new ArrayList<Node>();
+		v2 nowDot=new v2(pos);
+		que.add(nowDot);
+		while(que.size()>0){
+			nowDot=que.get(0);
+			que.remove(0);
+			for(int i=0;i<4;i++){
+				int nextX=nowDot.x+this.fx[i];
+				int nextY=nowDot.y+this.fy[i];
+				if(nextX==this.selfSnake.list.get(this.selfSnake.list.size()-1).pos.x
+						&&nextY==this.selfSnake.list.get(this.selfSnake.list.size()-1).pos.y){
+					this.canArriveTail=true;
+				}else if(Sence.mapp[nextX][nextY]=='F'){
+					this.canArriveFood=true;
+				}
+				if(Sence.mapp[nextX][nextY]==' '&&vis[nextX][nextY]==false){
+					vis[nextX][nextY]=true;
+					que.add(nowDot);
+				}
+			}
+		}
+	}
+	
+	
+	public v2 forword(){
+		
+		int x = 0,y = 0;
+		if(this.load.size()>0){
+			x=this.load.get(this.load.size()-1).pos.x-this.loadTree.head.pos.x;
+			y=this.load.get(this.load.size()-1).pos.y-this.loadTree.head.pos.y;
+		}else{
+			
+			for(int i=0;i<4;i++){
+				int nextX=this.loadTree.head.pos.x+this.fx[i];
+				int nextY=this.loadTree.head.pos.y+this.fy[i];
+				if(Sence.mapp[nextX][nextY]=='F'){
+					x=this.fx[i];
+					y=this.fy[i];
+					
+				}
+			}
+			
+		}
+		//System.out.println(x+" "+y);
+		v2 fp=new v2(x,y);
+		return fp;
+	}
+	
+	
+	
+	public v2 toSub(v2 otherPos){
+		return (new v2(otherPos.x/30,(otherPos.y-20)/30));
+	}
+	public v2 toPos(v2 otherPos){
+		return (new v2(otherPos.x*30,otherPos.y*30+20));
+	}
+	public v2 getFp(v2 d1,v2 d2){
+		return (new v2(d2.x-d1.x,d2.y-d1.y));
+	}
+	
+	public ArrayList getCanForWordDot(v2 pos,v2 fp){
+		ArrayList<v2> dot=new ArrayList<v2>();
+		for(int i=0;i<4;i++){
+			if((fp.x==0&&fp.y!=-fy[i])||(fp.y==0&&fp.x!=-fx[i])){
+				int x=pos.x+fx[i];
+				int y=pos.y+fy[i];
+				if(Sence.mapp[x][y]==' '||Sence.mapp[x][y]=='F'){
+					dot.add(new v2(x,y));
+					//MainForms.main.sence.addOb(this.toPos(new v2(x,y)));
+				}
+			}
+		}
+		return dot;
+	}
+	public ArrayList getNotForWordDot(v2 pos,v2 fp){
+		ArrayList<v2> dot=new ArrayList<v2>();
+		for(int i=0;i<8;i++){
+			if((fx[i]==fp.x&&fy[i]==-fp.y)||(fx[i]==-fp.x&&fy[i]==fp.y)){
+			}else{
+				int x=pos.x+fx[i];
+				int y=pos.y+fy[i];
+				if(Sence.mapp[x][y]=='S'||Sence.mapp[x][y]=='O'){
+					dot.add(new v2(x,y));
+					//MainForms.main.sence.addOb(this.toPos(new v2(x,y)));
+				}
+			}
+		}
+		return dot;
+	}
+}

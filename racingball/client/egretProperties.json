@@ -1,0 +1,57 @@
+{
+  "engineVersion": "5.2.12",
+  "compilerVersion": "5.2.12",
+  "template": {},
+  "target": {
+    "current": "web"
+  },
+  "eui": {
+    "exmlRoot": [
+      "resource/eui_skins"
+    ],
+    "themes": [
+      "resource/default.thm.json"
+    ],
+    "exmlPublishPolicy": "commonjs"
+  },
+  "modules": [
+    {
+      "name": "egret"
+    },
+    {
+      "name": "eui"
+    },
+    {
+      "name": "assetsmanager"
+    },
+    {
+      "name": "tween"
+    },
+    {
+      "name": "game"
+    },
+    {
+      "name": "promise"
+    },
+    {
+      "path": "libs/three",
+      "name": "three"
+    },
+    {
+      "path": "libs/lzString",
+      "name": "lz-string"
+    },
+    {
+      "path": "libs/inflate",
+      "name": "inflate"
+    },
+    {
+      "path": "libs/threePlus",
+      "name": "threePlus"
+    },
+    {
+      "path": "libs/vconsole",
+      "name": "vconsole"
+    }
+  ]
+}

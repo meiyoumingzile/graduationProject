@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<e:Skin class="RankViewSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui"
+        xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<w:Config id="16909da4a42"></w:Config>
+	<e:Image width="100%" height="100%" x="0" y="0" source="rank_example.jpg" anchorOffsetX="0" anchorOffsetY="0" visible="false"/>
+	<e:Button id="btn_home" label="" x="0" y="0" enabled="true">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="return_main.png" source.down="return_main_down.png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Group id="gp_friends" width="100%" anchorOffsetX="0" anchorOffsetY="0" height="811" y="336" horizontalCenter="0">
+		<e:Scroller id="sc_friends" height="100%" width="100%" anchorOffsetX="0" anchorOffsetY="0" rotation="0" horizontalCenter="0">
+			<e:DataGroup id="dg_friends" itemRenderer="FriendRankItemRender" anchorOffsetX="0" width="100%" anchorOffsetY="0" height="100" y="3.03" x="-0.03">
+				<e:layout>
+					<e:VerticalLayout horizontalAlign="center" gap="8"/>
+				</e:layout>
+			</e:DataGroup>
+		</e:Scroller>
+	</e:Group>
+	<e:Group id="gp_champion" y="32" horizontalCenter="0">
+		<e:Image  source="rank_champion_head.png"/>
+		<e:Group width="300" height="70" y="178" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0">
+			<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="rank_champion_bar.png"/>
+			<e:Label id="lb_champion_name" text="ss" y="9" height="100%" width="100%" size="40" horizontalCenter="0" textAlign="center" bold="true" fontFamily="Arial" italic="true" verticalAlign="top"/>
+		</e:Group>
+		<e:Group y="36" width="151" height="152" x="114">
+			<e:Image id="img_portrait_champion" horizontalCenter="0" verticalCenter="0" width="139" height="132" source=""/>
+			<e:Image id="img_portrait_champion_mask" source="rank-mask-champion.png" horizontalCenter="0" verticalCenter="0"  width="148" height="148"/>
+		</e:Group>
+	</e:Group>
+	<e:Group id="gp_tab_bar" y="276" horizontalCenter="0" visible="false">
+		<e:Image id="img_tab_world" source="rank-tab-world.png" />
+		<e:Image id="img_tab_friend" x="0" y="0" source="rank-tab-friend.png" visible="false" />
+		<e:Group id="btn_world" width="189" height="60" left="0" />
+		<e:Group id="btn_friend" width="189" height="60" right="0" />
+	</e:Group>
+	<e:Rect id="rect_white_bar" width="617" height="3" y="345" horizontalCenter="0" fillColor="0xffffff"  visible="false"/>
+	<e:ViewStack id="view_stack" y="372" selectedIndex="0" horizontalCenter="0" visible="false">
+		<e:Group id="gp_world" width="100%" height="100%" name="视图">
+			<e:Scroller scaleX="1" scaleY="1" height="578" horizontalCenter="0">
+				<e:Group>
+					<e:List id="list_world" scaleX="1" scaleY="1" itemRendererSkinName="WorldRankItemRenderSkin"
+					        itemRenderer="WorldRankItemRender" horizontalCenter="0">
+						<e:layout>
+							<e:VerticalLayout gap="10" />
+						</e:layout>
+					</e:List>
+				</e:Group>
+			</e:Scroller>
+			<ns1:WorldRankItemRender id="node_world"  top="611" height="74"/>
+		</e:Group>
+		<e:Group id="gp_friend" width="100%" height="100%" name="视图" scaleX="1" scaleY="1">
+			<e:Scroller scaleX="1" scaleY="1" height="494" horizontalCenter="0">
+				<e:Group>
+					<e:List id="list_friend" itemRendererSkinName="FriendRankItemRenderSkin" itemRenderer="FriendRankItemRender"
+					        horizontalCenter="0">
+						<e:layout>
+							<e:VerticalLayout gap="10" />
+						</e:layout>
+					</e:List>
+				</e:Group>
+			</e:Scroller>
+			<e:Button label="I N V I T E" y="626" scaleX="1" id="btn_share" scaleY="1" horizontalCenter="0" icon="rank-icon-invite.png">
+				<e:skinName>
+					<e:Skin states="up,down,disabled">
+						<e:Image width="100%" height="100%" source="btn3-up.png" source.down="btn3-down.png" />
+						<e:Group anchorOffsetY="0" horizontalCenter="0" height="95" y="0" y.down="5">
+							<e:Image id="iconDisplay" source="rank-icon-invite.png" verticalCenter="0" y="74" scaleX="1" scaleY="1" />
+							<e:Label id="labelDisplay" verticalCenter="2" text="INVITE" size="35" x="50" y="73.00000000000001" scaleX="1"
+							         scaleY="1" textColor="0xf79e3a" />
+							<e:layout>
+								<e:BasicLayout/>
+							</e:layout>
+						</e:Group>
+					</e:Skin>
+				</e:skinName>
+			</e:Button>
+			<ns1:FriendRankItemRender id="node_friend" top="520" height="74" />
+		</e:Group>
+	</e:ViewStack>
+</e:Skin>

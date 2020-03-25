@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="InvitePortraitItemRenderSkin" states="up,down,disabled" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="invite-portrait.png"/>
+	<e:Image id="img_portrait_mask" source="invite-portrait-mask.png" visible="false"/>
+	<e:Image id="img_portrait" width="113" height="113" anchorOffsetY="0" source=""/>
+
+	<w:Config id="16923cce86e" ></w:Config>
+</e:Skin>

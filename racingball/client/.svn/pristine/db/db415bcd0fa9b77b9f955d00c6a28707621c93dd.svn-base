@@ -1,0 +1,61 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var DB_skin = (function () {
+    function DB_skin() {
+    }
+    DB_skin.get = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return (_a = DB_skin.getDB()).get.apply(_a, args);
+        var _a;
+    };
+    DB_skin.getall = function () { return DB_skin.getDB().getall(); };
+    DB_skin.getDB = function () {
+        if (DB_skin._db)
+            return DB_skin._db;
+        var _keys = ["id", "order", "fbx", "tex", "thumb", "price", "weight",];
+        var _datas = {
+            "1": [1, 1, "1", "ball.jpg", "thumb_baiqiu.png", "0:0", 0],
+            "9": [9, 2, "4", "tietu_maoqiu_4.jpg", "thumb_maoqiu.png", "2:1", 80],
+            "13": [13, 3, "4", "tietu_gouqiu_4.jpg", "thumb_gouqiu.png", "2:2", 80],
+            "6": [6, 4, "4", "tietu_xiaojiqiu_4.jpg", "thumb_xiaojiqiu.png", "2:3", 60],
+            "2": [2, 5, "4", "tietu_zhuqiu_4.jpg", "thumb_zhuqiu.png", "2:5", 90],
+            "8": [8, 6, "4", "tietu_qieqiu_4.jpg", "thumb_qieqiu.png", "2:8", 70],
+            "12": [12, 7, "4", "tietu_hetunqiu_4.jpg", "thumb_hetunqiu.png", "2:12", 30],
+            "3": [3, 8, "1", "tietu_zhangyuqiu_1.jpg", "thumb_zhangyuqiu.png", "1:1", 70],
+            "4": [4, 9, "1", "tietu_yuanquanqiu_1.jpg", "thumb_yuanquanqiu.png", "1:1", 80],
+            "5": [5, 10, "1", "tietu_xiaolianqiu_1.jpg", "thumb_xiaolianqiu.png", "1:2", 80],
+            "7": [7, 11, "2", "tietu_xianqiu_2.jpg", "thumb_xianqiu.png", "1:2", 50],
+            "10": [10, 12, "1", "tietu_langxianqiu_1.jpg", "thumb_langxianqiu.png", "1:2", 80],
+            "11": [11, 13, "1", "tietu_huabanqiu_1.jpg", "thumb_huabanqiu.png", "1:2", 80],
+            "15": [15, 14, "1", "ball_jinqiaqiu_1.jpg", "thumb_jinqiaqiu.png", "1:3", 5],
+            "33": [33, 15, "2", "tietu_shandianqiu_2.jpg", "thumb_shandianqiu.png", "1:3", 5],
+            "22": [22, 16, "3", "tietu_dituqiu_3.jpg", "thumb_dituqiu.png", "1:2", 5],
+            "23": [23, 17, "7", "tietu_jinglingqiu_7.jpg", "thumb_jinglingqiu.png", "1:2", 5],
+            "26": [26, 18, "7", "tietu_fenhuaqiu_7.jpg", "thumb_fenhuaqiu.png", "1:2", 5],
+            "28": [28, 19, "7", "tietu_caihuaqiu_7.jpg", "thumb_caihuaqiu.png", "1:2", 5],
+            "29": [29, 20, "7", "tietu_tiaowenqiu_7.jpg", "thumb_tiaowenqiu.png", "1:2", 5],
+            "30": [30, 21, "7", "tietu_faguoqiu_7.jpg", "thumb_faguoqiu.png", "1:2", 5],
+            "31": [31, 22, "7", "tietu_yingguoqiu_7.jpg", "thumb_yingguoqiu.png", "1:2", 5],
+            "32": [32, 23, "6", "tietu_guoqijiheqiu_6.jpg", "thumb_guoqijiheqiu.png", "1:2", 5],
+            "21": [21, 24, "7", "tietu_xiguaqiu_7.jpg", "thumb_xiguaqiu.png", "1:2", 5],
+            "14": [14, 25, "2", "tietu_gaoerfuqiu_2.jpg", "thumb_gaoerfuqiu.png", "3:100", 10],
+            "16": [16, 26, "6", "tietu_zuqiu_6.jpg", "thumb_zuqiu.png", "3:300", 5],
+            "24": [24, 27, "7", "tietu_lv6_7.jpg", "thumb_lv6.png", "3:500", 5],
+            "17": [17, 28, "7", "tietu_lanqiu_7.jpg", "thumb_lanqiu.png", "3:800", 5],
+            "27": [27, 29, "7", "tietu_hei8qiu_7.jpg", "thumb_hei8qiu.png", "3:1100", 5],
+            "18": [18, 30, "7", "tietu_bangqiu_7.jpg", "thumb_bangqiu.png", "3:1500", 5],
+            "25": [25, 31, "7", "tietu_zi12qiu_7.jpg", "thumb_zi12qiu.png", "3:2000", 5],
+            "19": [19, 32, "7", "tietu_wangqiu_7.jpg", "thumb_wangqiu.png", "3:2500", 5],
+            "20": [20, 33, "5", "tietu_paiqiu_5.jpg", "thumb_paiqiu.png", "3:3000", 5]
+        };
+        DB_skin._db = new DB(_keys, _datas);
+        return DB_skin._db;
+    };
+    return DB_skin;
+}());
+__reflect(DB_skin.prototype, "DB_skin");
+//# sourceMappingURL=DB_skin.js.map

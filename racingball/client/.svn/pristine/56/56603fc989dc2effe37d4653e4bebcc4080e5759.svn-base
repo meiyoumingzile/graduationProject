@@ -1,0 +1,29 @@
+class ADFactory {
+    static create() {
+        let ad;
+        if (!!window["FBInstant"]) {
+            const [
+                iad_high,   //small
+                iad_low,
+                iad_any,
+                rad_high,   //large
+                rad_low,
+                rad_any
+            ] = [
+                    "270417160309844_299491594069067",
+                    "270417160309844_299491527402407",
+                    "270417160309844_299491474069079",
+                    "270417160309844_299491684069058",
+                    "270417160309844_299491657402394",
+                    "270417160309844_299491627402397"
+                ];
+            ad = new AdvertiseFB(
+                [iad_high, iad_low, iad_any],
+                [rad_high, rad_low, rad_any]
+            );
+        } else {
+            ad = new AdvertiseDev();
+        }
+        return ad;
+    }
+}

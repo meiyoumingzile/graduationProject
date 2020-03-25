@@ -1,0 +1,30 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var ADFactory = (function () {
+    function ADFactory() {
+    }
+    ADFactory.create = function () {
+        var ad;
+        if (!!window["FBInstant"]) {
+            var _a = [
+                "270417160309844_299491594069067",
+                "270417160309844_299491527402407",
+                "270417160309844_299491474069079",
+                "270417160309844_299491684069058",
+                "270417160309844_299491657402394",
+                "270417160309844_299491627402397"
+            ], iad_high = _a[0], //small
+            iad_low = _a[1], iad_any = _a[2], rad_high = _a[3], //large
+            rad_low = _a[4], rad_any = _a[5];
+            ad = new AdvertiseFB([iad_high, iad_low, iad_any], [rad_high, rad_low, rad_any]);
+        }
+        else {
+            ad = new AdvertiseDev();
+        }
+        return ad;
+    };
+    return ADFactory;
+}());
+__reflect(ADFactory.prototype, "ADFactory");
+//# sourceMappingURL=AdFactory.js.map

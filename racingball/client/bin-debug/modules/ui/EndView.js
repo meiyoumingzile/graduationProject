@@ -1,0 +1,268 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = this && this.__extends || function __extends(t, e) { 
+ function r() { 
+ this.constructor = t;
+}
+for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
+r.prototype = e.prototype, t.prototype = new r();
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var EndView = (function (_super) {
+    __extends(EndView, _super);
+    function EndView() {
+        var _this = _super.call(this) || this;
+        _this.modalAlpha = .4;
+        _this.destination = [];
+        return _this;
+    }
+    EndView.prototype.childrenCreated = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var tw, sc, i, friendRankList, _a, arr;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _super.prototype.childrenCreated.call(this);
+                        this.gp_play.scale = Constant.FullWidthScale;
+                        this.gp_friends.scale = Constant.FullWidthScale;
+                        tw = egret.Tween.get(this.btn_friendly_end, { loop: true });
+                        tw.to(0, 0).call(function () { this.scaleX = 1; this.scaleY = 1; }).wait(2000);
+                        sc = [-0.1, 0.05, -0.03, 0.05, -0.03];
+                        for (i = 0; i < 5; i++) {
+                            tw.to({ scaleX: 1.0 + sc[i], scaleY: 1.0 - sc[i] }, 100 - i * 10)
+                                .to({ scaleX: 1, scaleY: 1 }, 55);
+                        }
+                        this.lb_scores_end.text = Math.round(Math.abs(Game.inst.player.group.position.z)) + "";
+                        _a = app.status.friendRankList;
+                        if (_a) return [3 /*break*/, 2];
+                        return [4 /*yield*/, app.platform.getFriendRankList()];
+                    case 1:
+                        _a = (_b.sent());
+                        _b.label = 2;
+                    case 2:
+                        friendRankList = _a;
+                        arr = [];
+                        friendRankList.map(function (value) {
+                            arr.push(RankPlayerVO.createFromLeaderBoardEntry(value));
+                        });
+                        GameView.sortByScore(arr, 0, arr.length - 1, function (a, b) {
+                            return a.score > b.score;
+                        });
+                        this.dg_friends.dataProvider = new eui.ArrayCollection(arr);
+                        //	(this.gp_btns.layout as eui.HorizontalLayout).gap = (this.stage.stageWidth - this.btn_rank.width * this.gp_btns.numChildren) / this.gp_btns.numChildren;
+                        //	this.playAnimate();
+                        /*//let skins_star = app.status.skinItemData.filter(v => v.price.type === 2).map(i => i.id);
+                        let index = 1;
+                        const time = 800;
+                        Utils.makeArrayRandom(skins_star);
+                        this.btn_rare.icon = app.status.skinItemData[skins_star[0] - 1].thumb;
+                
+                        this.ticker = egret.setInterval(() => {
+                            if (index === skins_star.length) {
+                                Utils.makeArrayRandom(skins_star);
+                                index = 0;
+                            }
+                            this.btn_rare.icon = app.status.skinItemData[skins_star[index] - 1].thumb;
+                            index++;
+                        }, this, time);
+                        */
+                        //this.img_rank1.mask = this.img_rank1_mask;
+                        //this.img_rank2.mask = this.img_rank2_mask;
+                        //this.img_rank3.mask = this.img_rank3_mask;
+                        /*	this.rankCells = [{
+                                lbl: this.txt_rank1,
+                                img: this.img_rank1,
+                            }, {
+                                lbl: this.txt_rank2,
+                                img: this.img_rank2,
+                            }]
+                            let players = Game.inst.robotCtr.ranks;
+                            this.rankCells.forEach((cell, i) => {
+                                let info = players[i];
+                                if (info instanceof Player) {
+                                    cell.lbl.text = app.platform.name();
+                                    cell.img.source = app.platform.photo();
+                                } else {
+                                    cell.lbl.text = (info as Robot).robotInfo.name;
+                                    cell.img.source = (info as Robot).robotInfo.photo;
+                                }
+                            });
+                            this.rank = Game.inst.player.rank + 1;
+                    
+                            // this.img_game.mask = this.img_game_mask;
+                            // this.img_game.source = "bump.jpg";
+                    
+                            this.txt_star_amount.text = app.pp.starCount + "";
+                    
+                            this.txt_rank.text = Utils.getRankNumberText(this.rank);
+                            if (this.rank < Constant.starAmount.length) {
+                                this.txt_star_amount.text = app.pp.starCount - Constant.starAmount[this.rank] + "";
+                                this.txt_star_plus.text = "+" + Constant.starAmount[this.rank];
+                            } else {
+                                this.txt_star_plus.text = "+0";
+                            }
+                    
+                            // this.gp_game.addEventListener("touchTap", () => {
+                            // 	app.platform.logEvent(Log.EventType.ChangeGame, { type: app.status.playerType, result: 0 });
+                            // 	app.platform.logEvent(Log.EventType.SettlementClick, { type: app.status.playerType, source: "btnOtherGame" });
+                            // 	let bo = app.platform.switchGame("274629043216304");
+                            // 	if (bo) {
+                            // 		app.platform.logEvent(Log.EventType.ChangeGame, { type: app.status.playerType, result: 1 });
+                            // 	} else {
+                            // 		app.platform.logEvent(Log.EventType.ChangeGame, { type: app.status.playerType, result: 2 });
+                            // 	}
+                            // }, this);
+                    
+                            this.btn_rank.addEventListener("touchTap", () => {
+                                this.close();
+                                app.ui.addPopup(new RankView);
+                                app.platform.logEvent(Log.EventType.SettlementClick, { type: app.status.playerType, source: "btnRank" });
+                            }, this);
+                    
+                            this.btn_rare.addEventListener("touchTap", () => {
+                                this.close();
+                                app.ui.addPopup(new InviteView);
+                                app.platform.logEvent(Log.EventType.SettlementClick, { type: app.status.playerType, source: "btnInviteSkin" });
+                            }, this);
+                    
+                            this.btn_skin.addEventListener("touchTap", () => {
+                                this.close();
+                                app.ui.addPopup(new SkinView);
+                                app.platform.logEvent(Log.EventType.SettlementClick, { type: app.status.playerType, source: "btnSkin" });
+                            }, this);
+                    
+                            this.btn_play.addEventListener("touchTap", () => {
+                                app.platform.logEvent(Log.EventType.SettlementClick, { type: app.status.playerType, source: "btnPlay" });
+                                // Common.invite().then(() => {
+                                // 	this.close();
+                                // 	app.ui.addPopup(new MatchView);
+                                // });
+                                this.close();
+                                // app.ui.addPopup(new MatchView);
+                                // app.notify(AppConstant.Notify.enter_game);
+                                app.notify(AppConstant.Notify.enter_game);
+                    
+                                //choose friend
+                            }, this);
+                            */
+                        this.btn_home_end.addEventListener("touchTap", function () {
+                            _this.close();
+                            app.ui.addPopup(new HomeView);
+                            app.platform.logEvent(Log.EventType.SettlementClick, { type: app.status.playerType, source: "btnHome" });
+                        }, this);
+                        this.btn_skin_end.addEventListener("touchTap", function () {
+                            _this.close();
+                            app.ui.addPopup(new SkinView);
+                            app.platform.logEvent(Log.EventType.HomeClick, { type: app.status.playerType, source: "btnSkin" });
+                        }, this);
+                        this.btn_friendly_end.addEventListener("touchTap", function () {
+                            app.platform.logEvent(Log.EventType.HomeClick, { type: app.status.playerType, source: "btnPlay" });
+                            Common.invite().then(function () {
+                                _this.close();
+                                // app.ui.addPopup(new MatchView);
+                                app.notify(AppConstant.Notify.enter_game);
+                            });
+                        }, this);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EndView.prototype.refreshNotify = function () {
+        if (app.pp.newStarSkinAmount) {
+            this.gp_notify_skin.visible = true;
+            this.txt_notify_skin.text = app.pp.newStarSkinAmount + "";
+        }
+        if (app.pp.checkNewInviteSkin()) {
+            this.gp_notify_invite.visible = true;
+            this.txt_notify_invite.text = app.pp.newInviteSkinAmount + "";
+        }
+    };
+    EndView.prototype.onExit = function () {
+        _super.prototype.onExit.call(this);
+        egret.Tween.removeAllTweens();
+        egret.clearInterval(this.ticker);
+        Game.inst.resetLevel(app.pp.currentLevel);
+    };
+    EndView.prototype.playAnimate = function () {
+        egret.Tween.get(this.img_podium).wait(100).to({ scale: 1.3 }, 167).to(({ scale: 0.8 }), 120).to(({ scale: 1.2 }), 120).to(({ scale: 1 }), 120);
+        egret.Tween.get(this.gp_rank3_portrait).wait(750).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        egret.Tween.get(this.txt_rank3).wait(750).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        egret.Tween.get(this.gp_rank2_portrait).wait(833).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        egret.Tween.get(this.txt_rank2).wait(833).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        egret.Tween.get(this.gp_rank1_portrait).wait(917).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        egret.Tween.get(this.txt_rank1).wait(917).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        egret.Tween.get(this.img_crown).wait(1333).to({ alpha: 1, y: -30 }, 500);
+        egret.Tween.get(this.btn_play).wait(2000).to({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 167).to({ scale: 0.9 }, 167).to({ scale: 1 }, 167);
+        // egret.Tween.get(this.gp_game).wait(2500).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 83).to({ scale: 0.9 }, 83).to({ scale: 1 }, 83);
+        egret.Tween.get(this.btn_rank).wait(2667).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 83).to({ scale: 0.9 }, 83).to({ scale: 1 }, 83);
+        egret.Tween.get(this.btn_skin).wait(2833).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 83).to({ scale: 0.9 }, 83).to({ scale: 1 }, 83);
+        egret.Tween.get(this.btn_rare).wait(3000).set({ alpha: 1, scale: 0.1 }).to({ scale: 1.1 }, 83).to({ scale: 0.9 }, 83).to({ scale: 1 }, 83)
+            .call(this.refreshNotify, this);
+        egret.Tween.get(this.gp_rank).wait(3167).to({ scale: 1, alpha: 1 }, 180).call(this.playStarAnimation, this);
+    };
+    EndView.prototype.playStarAnimation = function () {
+        var _this = this;
+        this.gp_star_animation.alpha = 1;
+        this.validateNow();
+        this.gp_star_animation.x = (this.stage.stageWidth - this.gp_star_animation.width) / 2;
+        this.destination.push(this.gp_star_amount.x - this.gp_star_animation.x, this.gp_star_amount.y - this.gp_star_animation.y);
+        var vg = { v: app.pp.starCount - Constant.starAmount[this.rank] };
+        egret.Tween.get(vg, {
+            onChange: function () {
+                _this.txt_star_amount.text = Math.round(vg.v) + "";
+            }
+        }).wait(700).to({
+            v: app.pp.starCount
+        }, 200);
+        egret.Tween.get(this.image).to({ x: 21, y: 86 }, 150).to({ x: 32, y: 25 }, 350).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image0).to({ x: 29, y: 45 }, 150).to({ x: 45, y: 14 }, 200).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image1).to({ x: 62, y: 39 }, 150).to({ x: 77, y: 5 }, 450).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 300);
+        egret.Tween.get(this.image2).to({ x: 31, y: 106 }, 150).to({ x: 53, y: 42 }, 600).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image3).to({ x: 39, y: 64 }, 150).to({ x: 52, y: 17 }, 850).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image4).to({ x: 38, y: -27 }, 150).to({ x: 50, y: -47 }, 200).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image5).to({ x: 30, y: -39 }, 150).to({ x: 55, y: -74 }, 350).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image6).to({ x: 30, y: -55 }, 150).to({ x: 75, y: 35 }, 450).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.image7).to({ x: 42, y: -52 }, 150).to({ x: 60, y: -76 }, 800).to({ x: this.destination[0], y: this.destination[1], alpha: 0 }, 250);
+        egret.Tween.get(this.gp_star).to({ scale: 1.2, alpha: 1 }, 150).to({ scale: 1 }, 100).wait(1250).to({ alpha: 0 }, 150);
+    };
+    return EndView;
+}(BasePopup));
+__reflect(EndView.prototype, "EndView");
+//# sourceMappingURL=EndView.js.map

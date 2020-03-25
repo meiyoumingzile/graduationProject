@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="skins.IconButtonSkin" states="up,down,disabled" minHeight="50" minWidth="50" xmlns:e="http://ns.egret.com/eui">
+    <e:Image id="iconDisplay" source="home-btn-audio1.png" anchorOffsetY="58.5" scaleX.down="0.9" scaleY.down="0.9" horizontalCenter="0" verticalCenter="0" anchorOffsetX="56.5"/>
+</e:Skin>

@@ -1,0 +1,123 @@
+namespace Common {
+    // export async function share(
+    //     successFunc = () => { },
+    //     failedFunc = () => { },
+    //     getInfo = async (): Promise<{ img?: string, text?: string, data?: any, intent?: string }> => null
+    // ) {
+    //     const info = await getInfo();
+    //     try {
+    //         await app.platform.share(info);
+    //         successFunc();
+    //     } catch (e) {
+    //         egret.log("share err", e);
+    //         failedFunc();
+    //     }
+    // }
+
+    let _contextID = "" //场景的ID
+    export async function onContextChanged() {
+        let id = app.platform.getContextID();
+        if (_contextID != id) {
+            _contextID = id;
+            sendRankUpdate();
+        }
+    }
+
+    let _leaderboard: FBInstant.Leaderboard;//排行榜
+    export async function sendRankUpdate() {
+        try {
+            _leaderboard = _leaderboard || await FBInstant.getLeaderboardAsync("rank");//获取这款小游戏中的特有排行榜。
+            await _leaderboard.setScoreAsync(1, "");//更新玩家的分数
+            await FBInstant.updateAsync({ action: 'LEADERBOARD', name: "rank", text: `${app.platform.name()} joined this game` });
+        } catch (e) {
+            egret.log("sendScoreUpdate failed:", e);
+        }
+    }
+
+    export async function invite(
+        successFunc?: Function,
+        failedFunc?: Function,
+        template?: string,
+    ) {
+        app.ui.busy();
+        let bo = await app.platform.choose({ filters: ['NEW_CONTEXT_ONLY'] })
+        app.ui.rmBusy();
+        if (!bo) {
+            failedFunc && failedFunc();
+        } else {
+            successFunc && successFunc();
+        }
+    }
+
+    export function showRAD(
+        source: "adSkin" | "adRevive",
+        successFunc = () => { },
+        failedFunc = () => { },
+    ) {
+        if (!Context.isFB) {
+            successFunc();
+            return;
+        }
+        let onFail = () => {
+            failedFunc();
+            app.ui.toast("Ads not ready");
+        }
+        if (!app.ad.hasRAD() || !app.ad.suportAD()) {
+            return onFail();
+        }
+        // app.platform.logEvent(Log.EventType.AD, { type: "video", source });
+        app.ad.showRAD().then(successFunc, onFail);
+    }
+
+    // export function showIAD(
+    //     source: "adSkin" | "adRevive",
+    //     successFunc = () => { },
+    //     failedFunc = () => { },
+    // ) {
+    //     if (!window['FBInstant']) {
+    //         successFunc();
+    //         return;
+    //     }
+    //     let onFail = () => {
+    //         failedFunc();
+    //         app.ui.toast("Ads not ready");
+    //     }
+    //     if (!app.ad.hasIAD() || !app.ad.suportAD()) {
+    //         return onFail();
+    //     }
+    //     app.platform.logEvent(Log.EventType.AD, { type: "video", source });
+    //     app.ad.showIAD().then(successFunc, onFail);
+    // }
+
+    export function shouldPlayAD(): boolean {
+        const ad = app.ad;
+        if (!ad.suportAD()) return false;
+        if (!ad.hasIAD() && !ad.hasRAD()) return false;
+        if (Date.now() - app.status.lastPlayADTime < AppConstant.AD_INTERVAL_TIME) return false;
+        return true;
+    }
+
+    function shouldPlayRAD(): boolean {
+        const ad = app.ad;
+        if (!ad.suportAD()) return false;
+        if (!ad.hasRAD()) return false;
+        if (Date.now() - app.status.lastPlayRADTime < AppConstant.RAD_INTERVAL_TIME) return false;
+        return true;
+    }
+
+    export async function tryPlayAD() {
+        try {
+            if (shouldPlayAD()) {
+                let rad = shouldPlayRAD();
+                app.platform.logEvent(Log.EventType.AD, { type: rad ? "video" : "cover", source: "adNextLevel" });
+                if (rad) {
+                    await app.ad.showRAD();
+                } else {
+                    await app.ad.showIAD();
+                }
+            }
+        } catch (e) {
+
+        }
+    }
+}

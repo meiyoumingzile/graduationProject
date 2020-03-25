@@ -1,0 +1,12 @@
+Exception in thread "Thread-2" java.lang.Error: 无法解析的编译问题：
+	标记“(”上有语法错误，在此标记之后应为 Expression
+
+	at myPackage1.AI1.search(AI1.java:111)
+	at myPackage1.Snake.run(Snake.java:57)
+	at java.lang.Thread.run(Unknown Source)
+Exception in thread "Thread-3" java.lang.Error: 无法解析的编译问题：
+	标记“(”上有语法错误，在此标记之后应为 Expression
+
+	at myPackage1.AI1.search(AI1.java:111)
+	at myPackage1.Snake.run(Snake.java:57)
+	at java.lang.Thread.run(Unknown Source)

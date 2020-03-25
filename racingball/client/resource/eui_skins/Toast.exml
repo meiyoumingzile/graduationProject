@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ToastSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width="597" height="58">
+	<w:Config id="16850d3e2ac" ></w:Config>
+	<e:Image left="0" right="0" source="toast_bg.png"/>
+	<e:Label id="text_node" text="Label" horizontalCenter="0" verticalCenter="0" size="33" textColor="0x1c0c0b"/>
+</e:Skin>

@@ -1,0 +1,115 @@
+package myPackage1;
+
+import java.awt.Graphics;
+import java.util.Arrays;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+@SuppressWarnings("serial")
+public class MainForms extends JFrame implements KeyListener,Runnable{
+	public static MainForms main;
+	static v2 size=new v2(1080,740);
+	public boolean canMove=true;
+	Sence sence=null;
+	private Thread thread=new Thread(this);///这里需要加入线程，绘图的操作线程
+	
+	
+	public static void main(String[] args){
+		new MainForms();
+	}
+	
+	public MainForms(){
+		main=this;
+		this.setTitle("PacMan");
+		this.setSize(size.x,size.y);
+		int w=Toolkit.getDefaultToolkit().getScreenSize().width;//获得电脑长宽
+		int h=Toolkit.getDefaultToolkit().getScreenSize().height;
+		this.setLocation((w-1000)/2,(h-770)/2);//设置位置，以左上角为准，且屏幕左上角是（0，0）
+		this.setResizable(false);
+		InitMaterial init=new InitMaterial();
+		InitMaterial.in();
+		sence=new Sence();
+		//this.mali=new Mali(0,480);
+		
+		
+		this.repaint();
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		
+		this.thread.start();
+	}
+	
+	public void paint(Graphics g) {
+		//重点！！双缓冲技术,缓冲屏幕大小的图片image，类型选择普通三原色BufferedImage.TYPE_3BYTE_BGR；
+		BufferedImage image=new BufferedImage(size.x,size.y,BufferedImage.TYPE_3BYTE_BGR);
+		Graphics g2=image.getGraphics();//创建画笔对象来接收所有图片;	
+		g2.drawImage(InitMaterial.pic_bg,0,0,size.x,size.y,this);
+		for(int i=0;i<sence.ob.size();i++){
+			//System.out.println(sence.ob.get(i).pos.x+" "+sence.ob.get(i).pos.y+"\n");
+			g2.drawImage(sence.ob.get(i).show,sence.ob.get(i).pos.x,sence.ob.get(i).pos.y,this);
+		}
+		for(int i=0;i<sence.food.size();i++){
+			g2.drawImage(sence.food.get(i).show,sence.food.get(i).pos.x,sence.food.get(i).pos.y,this);
+		}
+		for(int i=0;i<sence.snake1.list.size();i++){
+			g2.drawImage(sence.snake1.list.get(i).show,sence.snake1.list.get(i).pos.x
+					,sence.snake1.list.get(i).pos.y,this);
+		}
+		/*for(int i=0;i<sence.snake1.list.size();i++){
+			g2.drawImage(sence.snake1.list.get(i).show,sence.snake1.list.get(i).pos.x
+					,sence.snake1.list.get(i).pos.y,this);
+		}*/
+		g.drawImage(image,0,0,this);
+	}
+
+	@Override
+	public void run() {
+		while(true){
+			this.repaint();
+			try {
+				Thread.sleep(100);			
+			} catch (InterruptedException e){
+				e.printStackTrace();
+			}
+			for(int i=0;i<sence.ob.size();i++){
+				if(sence.snake1.list.get(0).VisCollision(sence.ob.get(i).pos)==true){
+					this.canMove=false;
+					JOptionPane.showMessageDialog(null, "2赢了", "结束", JOptionPane.ERROR_MESSAGE);		
+					System.exit(0);
+				}else{
+					
+				}
+			}
+			for(int i=0;i<sence.food.size();i++){
+				if(sence.snake1.list.get(0).VisCollision(sence.food.get(i).pos)==true){	
+					sence.snake1.add(1);
+					sence.removeFood(i);
+				}
+			}
+		}	
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+}

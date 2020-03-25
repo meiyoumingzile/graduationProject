@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<e:Skin class="FriendRankItemRenderSkin" states="up,down,disabled" minHeight="50" minWidth="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="img_bar" scale9Grid="72,0,302,74" height="100" horizontalCenter="0" source="rank_bg_4.png" width="100%"/>
+	<e:Group anchorOffsetY="0" height="100" left="0" right="0" horizontalCenter="0" minWidth="500">
+		<e:Label id="lb_name" text="34" x="150" size="30" height="100%" width="120" anchorOffsetY="0" anchorOffsetX="0" fontFamily="Arial" textColor="0xffffff" bold="true" textAlign="center" verticalAlign="middle" y="0" italic="true"/>
+		<e:Group id="gp_skin" x="284" y="27">
+		<e:Image id="img_skin" width="46" height="46" x="0" y="0" source="default_ball.png"/>
+		</e:Group>
+		<e:Label id="lb_score" text="0" size="40" height="40" width="150" textAlign="center" textColor="0xffffff" strokeColor="0xffffff" stroke="0" anchorOffsetY="0" anchorOffsetX="0" x="336" fontFamily="Arial" verticalAlign="justify" bold="true" y="30" italic="true"/>
+		<e:Button id="btn_play" label="" right="4" verticalCenter="2.5">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="rank_btn_play.png" source.down="rank_btn_play_down.png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btn_share" label="" verticalCenter="3" x="486" visible="false">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="rank_btn_share.png" source.down="rank_btn_share_down.png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="lb_rank" text="2" x="0" y="10" anchorOffsetY="0" height="75.34" anchorOffsetX="0" width="51.33" verticalAlign="middle" textAlign="center" size="40" fontFamily="Arial" bold="true"/>
+		<e:Group width="70" height="70" x="80" verticalCenter="0">
+			<e:Image id="img_headmerge" height="70" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="rank_hmerge_4.png" width="70" x="0" y="0"/>
+			<e:Image id="img_head" width="60" height="60" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="0"/>
+			<e:Image id="img_head_mask" width="60" height="60" horizontalCenter="0" verticalCenter="0" source="rank_headBg_mask.png"/>
+		</e:Group>
+	</e:Group>
+
+	<w:Config id="1690a34c73b" ></w:Config>
+</e:Skin>

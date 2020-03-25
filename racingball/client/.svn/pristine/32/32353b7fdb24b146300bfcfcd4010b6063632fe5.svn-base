@@ -1,0 +1,9 @@
+{
+	"initial": [
+		"js/egret.min.js",
+		"js/egret.web.min.js"
+	],
+	"game": [
+		"js/bundle.min.js"
+	]
+}

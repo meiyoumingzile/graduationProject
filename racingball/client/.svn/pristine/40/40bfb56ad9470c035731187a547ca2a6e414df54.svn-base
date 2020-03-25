@@ -1,0 +1,34 @@
+class SkinItemRender extends eui.ItemRenderer implements eui.UIComponent {
+	img_skin_icon: eui.Image;
+	data: ISkinRenderData;
+	unhave_mask: eui.Image;
+	mask_rect: eui.Rect;
+
+	protected dataChanged() {
+		super.dataChanged();
+
+
+		let skinType = app.status.skinItemData[this.data.id - 1].price.type;
+		let progress = app.pp.skinProgressData[this.data.id] || 0;
+		progress = skinType === 3 ? app.pp.starCount : progress;
+		const needNum = app.status.skinItemData[this.data.id - 1].price.num;
+
+		const id = this.data.id;
+		const have = app.pp.havingSkinIDs.includes(id);
+		if (have) {
+			this.mask_rect.scaleY = 0;
+		} else {
+			this.mask_rect.scaleY = 1 - progress / needNum;
+		}
+
+		this.img_skin_icon.source = this.data.thumb;
+		// this.fixStatus();
+	}
+
+	protected childrenCreated(): void {
+		super.childrenCreated();
+
+		this.unhave_mask.mask = this.mask_rect;
+	}
+
+}
